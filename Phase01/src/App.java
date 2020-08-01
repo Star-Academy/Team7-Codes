@@ -4,8 +4,9 @@ import java.util.function.Consumer;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FileReader fileReader = new FileReader();
         InvertedIndex invertedIndex = new InvertedIndex();
+        FileReader fileReader = new FileReader(invertedIndex);
+        fileReader.readAllFiles();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search for a single word : ");
         String word = scanner.nextLine();
