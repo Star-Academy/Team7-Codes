@@ -12,16 +12,16 @@ public class App {
         System.out.print("Search for a single word : ");
         String word = scanner.nextLine();
         String[] subs = word.split(" ");
-        Set<String> withPluses = new HashSet<String>();
-        Set<String> regulares =new HashSet<String>();
-        Set<String> withMinuses = new HashSet<String>();
+        HashSet<String> withPluses = new HashSet<String>();
+        HashSet<String> regulares =new HashSet<String>();
+        HashSet<String> withMinuses = new HashSet<String>();
         for (int i=0 ; i < subs.length ; i++){
             switch(subs[i].charAt(0)){
                case '+':
-                    withPluses.add(subs[i]);
+                    withPluses.add(subs[i].substring(1));
                     break;
                 case '-':
-                    withMinuses.add(subs[i]);
+                    withMinuses.add(subs[i].substring(1));
                     break;
                 default: 
                 regulares.add(subs[i]);
@@ -45,7 +45,7 @@ public class App {
 
 
         try {
-            HashSet<String> result = invertedIndex.findSingleWord(word);
+            HashSet<String> result = invertedIndex.advanceFind(regulares, withPluses, withMinuses);
             System.out.println(result.size() + " documents contain \"" + word + "\" : ");
             result.forEach(new Consumer<String>(){
                 @Override

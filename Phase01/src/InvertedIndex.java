@@ -28,7 +28,7 @@ public class InvertedIndex {
     }
 
     public HashSet<String> advanceFind(HashSet<String> mustIncludeWords, HashSet<String> includeWords,
-            HashSet<String> excludeWords) {
+            HashSet<String> excludeWords) throws Exception{
         HashSet<String> result = new HashSet<>();
         mustIncludeWords.forEach(new Consumer<String>() {
             @Override
@@ -67,6 +67,9 @@ public class InvertedIndex {
                 }
             }           
         });
+        if (result.size() == 0){
+            throw new Exception("No items match your search");
+        }
         return result;
     }
 }
