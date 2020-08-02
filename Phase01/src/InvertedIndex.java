@@ -1,6 +1,6 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.Consumer;
 
 public class InvertedIndex {
 
@@ -25,5 +25,48 @@ public class InvertedIndex {
             return dictionary.get(word);
         }
         throw new Exception("No items match your search");
+    }
+
+    public HashSet<String> advanceFind(HashSet<String> mustIncludeWords, HashSet<String> includeWords,
+            HashSet<String> excludeWords) {
+        HashSet<String> result = new HashSet<>();
+        mustIncludeWords.forEach(new Consumer<String>() {
+            @Override
+            public void accept(String t) {
+                try {
+                    HashSet<String> resultForSingleWord = findSingleWord(t);
+                    if (result.size() == 0) {
+                        result.addAll(resultForSingleWord);
+                    } else {
+                        result.retainAll(resultForSingleWord);
+                    }
+                } catch (Exception e) {
+                    // Just no result for this word ... nothing important
+                }
+            }
+        });
+        includeWords.forEach(new Consumer<String>() {
+            @Override
+            public void accept(String t) {
+                try {
+                    HashSet<String> resultForSingleWord = findSingleWord(t);
+                    result.addAll(resultForSingleWord);
+                } catch (Exception e) {
+                    // Just no result for this word ... nothing important
+                }
+            }
+        });
+        excludeWords.forEach(new Consumer<String>(){
+            @Override
+            public void accept(String t) {
+                try {
+                    HashSet<String> resultForSingleWord = findSingleWord(t);
+                    result.removeAll(resultForSingleWord);
+                } catch (Exception e) {
+                    // Just no result for this word ... nothing important
+                }
+            }           
+        });
+        return result;
     }
 }
