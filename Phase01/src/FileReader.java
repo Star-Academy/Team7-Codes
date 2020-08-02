@@ -5,15 +5,16 @@ import java.util.Scanner;
 
 
 public class FileReader {
-    InvertedIndex invertedIndex = new InvertedIndex();
-    public FileReader() {
-
+    InvertedIndex invertedIndex;
+    public FileReader(InvertedIndex invertedIndex) {
+        this.invertedIndex = invertedIndex;
     }
 
     public void readAllFiles(){
-        File path = new File("/home/hassan/code-star/Team7-Codes/Phase01/src/documents/");
+        File path = new File("/media/hassan/new part/code-star/EnglishData");
         File[] documents = path.listFiles();
-        readFile(documents[0]);
+        for(File document : documents)
+            readFile(document);
     }
 
     public void readFile(File document) {

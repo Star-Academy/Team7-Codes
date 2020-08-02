@@ -1,14 +1,49 @@
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FileReader fileReader = new FileReader();
         InvertedIndex invertedIndex = new InvertedIndex();
+        FileReader fileReader = new FileReader(invertedIndex);
+        fileReader.readAllFiles();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search for a single word : ");
         String word = scanner.nextLine();
+        String[] subs = word.split(" ");
+        Set<String> withPluses = new HashSet<String>();
+        Set<String> regulares =new HashSet<String>();
+        Set<String> withMinuses = new HashSet<String>();
+        for (int i=0 ; i < subs.length ; i++){
+            switch(subs[i].charAt(0)){
+               case '+':
+                    withPluses.add(subs[i]);
+                    break;
+                case '-':
+                    withMinuses.add(subs[i]);
+                    break;
+                default: 
+                regulares.add(subs[i]);
+            }
+        }
+
+
+        // for(String a : withPluses){
+        //     System.out.println(a);
+        // }
+        // System.out.println("%%%");
+        // for(String a : regulares){
+        //     System.out.println(a);
+        // }
+        // System.out.println("%%%");
+        // for(String a : withMinuses){
+        //     System.out.println(a);
+        // }
+        // System.out.println("%%%");
+
+
+
         try {
             HashSet<String> result = invertedIndex.findSingleWord(word);
             System.out.println(result.size() + " documents contain \"" + word + "\" : ");
