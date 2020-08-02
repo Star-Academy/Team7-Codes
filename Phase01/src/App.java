@@ -1,6 +1,5 @@
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class App {
@@ -9,7 +8,7 @@ public class App {
         FileReader fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles();
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Search for a single word : ");
+        System.out.print("Search : ");
         String word = scanner.nextLine();
         String[] subs = word.split(" ");
         HashSet<String> withPluses = new HashSet<String>();

@@ -11,7 +11,7 @@ public class FileReader {
     }
 
     public void readAllFiles(){
-        File path = new File("/media/hassan/new part/code-star/EnglishData");
+        File path = new File("D:\\Downloads\\SampleEnglishData\\EnglishData");
         File[] documents = path.listFiles();
         for(File document : documents)
             readFile(document);
