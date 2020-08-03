@@ -22,11 +22,9 @@ public class FileReader {
     public void readFile(File document) {
         try {
             Scanner input = new Scanner(document);
-            // System.out.println(document.getName());
             while (input.hasNext()) {
                 String line = input.next();
-                invertedIndex.add(line, document.getName());
-                // System.out.println(line);
+                invertedIndex.add(line.toLowerCase(), document.getName());
             }
             input.close();
         } catch (FileNotFoundException e) {

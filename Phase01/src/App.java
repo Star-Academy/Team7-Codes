@@ -5,29 +5,18 @@ import java.util.function.Consumer;
 public class App {
     public static void main(String[] args) throws Exception {
         InvertedIndex invertedIndex = new InvertedIndex();
-        FileReader fileReader = new FileReader(invertedIndex, "D:\\Downloads\\SampleEnglishData\\EnglishData");
+        FileReader fileReader = new FileReader(invertedIndex, "/media/hassan/new part/code-star/EnglishData");
         fileReader.readAllFiles();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search : ");
         String words = scanner.nextLine();
+        HashSet<String> result = invertedIndex.advanceFind(words.toLowerCase());
+        printOutput(result, words);
+        scanner.close();
+    }
 
-
-        // for(String a : withPluses){
-        //     System.out.println(a);
-        // }
-        // System.out.println("%%%");
-        // for(String a : regulares){
-        //     System.out.println(a);
-        // }
-        // System.out.println("%%%");
-        // for(String a : withMinuses){
-        //     System.out.println(a);
-        // }
-        // System.out.println("%%%");
-
-
+    public static void printOutput(HashSet<String> result, String words){
         try {
-            HashSet<String> result = invertedIndex.advanceFind(words);
             System.out.println(result.size() + " documents with \"" + words + "\" : ");
             result.forEach(new Consumer<String>(){
                 @Override
@@ -38,6 +27,6 @@ public class App {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } 
-        scanner.close();
     }
+    
 }

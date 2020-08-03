@@ -38,7 +38,9 @@ public class InvertedIndex {
     public HashSet<String> advanceFind(final String query) throws Exception {
         final HashSet<String> result = new HashSet<>();
         final SearchQuery searchQuery = stringToSearchQuery(query);
-        processMustInclude(result, searchQuery);
+        String first = (String) searchQuery.getMustIncludeWords().toArray()[0];
+        result.addAll(findSingleWord(first));
+        processSet(result, searchQuery.getMustIncludeWords(), HashSet.class.getMethod("retainAll", Collection.class));
         processSet(result, searchQuery.getIncludeWords(), HashSet.class.getMethod("addAll", Collection.class));
         processSet(result, searchQuery.getExcludeWords(), HashSet.class.getMethod("removeAll", Collection.class));
         if (result.size() == 0) {
@@ -55,27 +57,9 @@ public class InvertedIndex {
                     final HashSet<String> resultForSingleWord = findSingleWord(t);
                     method.invoke(result, resultForSingleWord);
                 } catch (Exception e) {
-                    // Just no result for this word ... nothing important
                 }
             }           
         });
     }
 
-    private void processMustInclude(HashSet<String> result, SearchQuery searchQuery) {
-        searchQuery.getMustIncludeWords().forEach(new Consumer<String>() {
-            @Override
-            public void accept(final String t) {
-                try {
-                    final HashSet<String> resultForSingleWord = findSingleWord(t);
-                    if (result.size() == 0) {
-                        result.addAll(resultForSingleWord);
-                    } else {
-                        result.retainAll(resultForSingleWord);
-                    }
-                } catch (final Exception e) {
-                    // Just no result for this word ... nothing important
-                }
-            }
-        });
-    }
 }
