@@ -38,8 +38,12 @@ public class InvertedIndex {
     public HashSet<String> advanceFind(final String query) throws Exception {
         final HashSet<String> result = new HashSet<>();
         final SearchQuery searchQuery = stringToSearchQuery(query);
-        String first = (String) searchQuery.getMustIncludeWords().toArray()[0];
-        result.addAll(findSingleWord(first));
+        try {
+            String first = (String) searchQuery.getMustIncludeWords().toArray()[0];
+            result.addAll(findSingleWord(first));
+        } catch (Exception e) {
+            // Just no result for this word ... nothing important
+        }
         processSet(result, searchQuery.getMustIncludeWords(), HashSet.class.getMethod("retainAll", Collection.class));
         processSet(result, searchQuery.getIncludeWords(), HashSet.class.getMethod("addAll", Collection.class));
         processSet(result, searchQuery.getExcludeWords(), HashSet.class.getMethod("removeAll", Collection.class));
@@ -57,6 +61,7 @@ public class InvertedIndex {
                     final HashSet<String> resultForSingleWord = findSingleWord(t);
                     method.invoke(result, resultForSingleWord);
                 } catch (Exception e) {
+                    // Just no result for this word ... nothing important
                 }
             }           
         });
