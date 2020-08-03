@@ -5,27 +5,11 @@ import java.util.function.Consumer;
 public class App {
     public static void main(String[] args) throws Exception {
         InvertedIndex invertedIndex = new InvertedIndex();
-        FileReader fileReader = new FileReader(invertedIndex);
+        FileReader fileReader = new FileReader(invertedIndex, "D:\\Downloads\\SampleEnglishData\\EnglishData");
         fileReader.readAllFiles();
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search : ");
-        String word = scanner.nextLine();
-        String[] subs = word.split(" ");
-        HashSet<String> withPluses = new HashSet<String>();
-        HashSet<String> regulares =new HashSet<String>();
-        HashSet<String> withMinuses = new HashSet<String>();
-        for (int i=0 ; i < subs.length ; i++){
-            switch(subs[i].charAt(0)){
-               case '+':
-                    withPluses.add(subs[i].substring(1));
-                    break;
-                case '-':
-                    withMinuses.add(subs[i].substring(1));
-                    break;
-                default: 
-                regulares.add(subs[i]);
-            }
-        }
+        String words = scanner.nextLine();
 
 
         // for(String a : withPluses){
@@ -42,10 +26,9 @@ public class App {
         // System.out.println("%%%");
 
 
-
         try {
-            HashSet<String> result = invertedIndex.advanceFind(regulares, withPluses, withMinuses);
-            System.out.println(result.size() + " documents contain \"" + word + "\" : ");
+            HashSet<String> result = invertedIndex.advanceFind(words);
+            System.out.println(result.size() + " documents with \"" + words + "\" : ");
             result.forEach(new Consumer<String>(){
                 @Override
                 public void accept(String t) {

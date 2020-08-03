@@ -6,13 +6,15 @@ import java.util.Scanner;
 
 public class FileReader {
     InvertedIndex invertedIndex;
-    public FileReader(InvertedIndex invertedIndex) {
+    File file;
+
+    public FileReader(InvertedIndex invertedIndex, String path) {
         this.invertedIndex = invertedIndex;
+        file = new File(path);
     }
 
     public void readAllFiles(){
-        File path = new File("D:\\Downloads\\SampleEnglishData\\EnglishData");
-        File[] documents = path.listFiles();
+        File[] documents = file.listFiles();
         for(File document : documents)
             readFile(document);
     }
@@ -26,6 +28,7 @@ public class FileReader {
                 invertedIndex.add(line, document.getName());
                 // System.out.println(line);
             }
+            input.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
