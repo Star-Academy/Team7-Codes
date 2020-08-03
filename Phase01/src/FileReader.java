@@ -2,9 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-
-
 public class FileReader {
+
     InvertedIndex invertedIndex;
     File file;
 
@@ -31,5 +30,4 @@ public class FileReader {
             e.printStackTrace();
         }
     }
-
 }

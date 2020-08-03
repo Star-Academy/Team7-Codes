@@ -8,8 +8,6 @@ public class InvertedIndex {
 
     HashMap<String, HashSet<String>> dictionary;
 
-
-
     public InvertedIndex() {
         dictionary = new HashMap<>();
     }

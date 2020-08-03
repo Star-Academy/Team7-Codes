@@ -3,7 +3,8 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+
+    public static void runCommandLine() {
         InvertedIndex invertedIndex = new InvertedIndex();
         //FileReader fileReader = new FileReader(invertedIndex, "/media/hassan/new part/code-star/EnglishData"); //Linux path
         FileReader fileReader = new FileReader(invertedIndex, "D:\\Downloads\\SampleEnglishData\\EnglishData"); // Windows path
@@ -20,7 +21,7 @@ public class App {
         scanner.close();
     }
 
-    public static void printOutput(HashSet<String> result, String words){
+    private static void printOutput(HashSet<String> result, String words){
         System.out.println(result.size() + " documents with \"" + words + "\" : ");
         result.forEach(new Consumer<String>(){
             @Override
@@ -28,6 +29,5 @@ public class App {
                 System.out.println("\t" + t);
             }
         });
-    }
-    
+    }  
 }
