@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class App {
 
     public static void runCommandLine() {
-        String path = "/media/hassan/new part/code-star/EnglishData";  // linux path
-        //String path = "D:\\Downloads\\SampleEnglishData\\EnglishData"; // Windows path
+        //String path = "/media/hassan/new part/code-star/EnglishData";  // linux path
+        String path = "D:\\Downloads\\SampleEnglishData\\EnglishData"; // Windows path
         InvertedIndex invertedIndex = new InvertedIndex();
         FileReader fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles(path);
