@@ -27,17 +27,17 @@ public class SearchQuery {
     public static SearchQuery parseString(String query) {
         SearchQuery searchQuery = new SearchQuery();
         String[] subs = query.split(" ");
-        for (int i=0 ; i < subs.length ; i++){
-            switch(subs[i].charAt(0)){
-               case '+':
-                    searchQuery.includeWords.add(subs[i].substring(1));
-                    break;
-                case '-':
-                    searchQuery.excludeWords.add(subs[i].substring(1));
-                    break;
-                default: 
-                    searchQuery.mustIncludeWords.add(subs[i]);
-            }
+        for (String word : subs) {
+            switch(word.charAt(0)){
+                case '+':
+                     searchQuery.includeWords.add(word.substring(1));
+                     break;
+                 case '-':
+                     searchQuery.excludeWords.add(word.substring(1));
+                     break;
+                 default: 
+                     searchQuery.mustIncludeWords.add(word);
+             }
         }
         return searchQuery;
     }

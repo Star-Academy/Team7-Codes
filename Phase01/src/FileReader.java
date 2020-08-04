@@ -21,8 +21,9 @@ public class FileReader {
         try {
             Scanner input = new Scanner(document);
             while (input.hasNext()) {
-                String line = input.next();
-                invertedIndex.add(line.toLowerCase(), document.getName());
+                String word = input.next();
+                word = Tokenizer.normalize(word);
+                invertedIndex.add(word, document.getName());
             }
             input.close();
         } catch (FileNotFoundException e) {
