@@ -4,21 +4,20 @@ import java.util.Scanner;
 
 public class FileReader {
 
-    InvertedIndex invertedIndex;
-    File file;
+    private InvertedIndex invertedIndex;
 
-    public FileReader(InvertedIndex invertedIndex, String path) {
+    public FileReader(InvertedIndex invertedIndex) {
         this.invertedIndex = invertedIndex;
-        file = new File(path);
     }
 
-    public void readAllFiles(){
+    public void readAllFiles(String path){
+        File file = new File(path);
         File[] documents = file.listFiles();
         for(File document : documents)
             readFile(document);
     }
 
-    public void readFile(File document) {
+    private void readFile(File document) {
         try {
             Scanner input = new Scanner(document);
             while (input.hasNext()) {
