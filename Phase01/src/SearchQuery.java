@@ -27,6 +27,7 @@ public class SearchQuery {
     public static SearchQuery parseString(String query) {
         SearchQuery searchQuery = new SearchQuery();
         String[] subs = query.split(" ");
+
         for (String word : subs) {
             switch(word.charAt(0)){
                 case '+':
@@ -39,6 +40,7 @@ public class SearchQuery {
                      searchQuery.mustIncludeWords.add(word);
              }
         }
+        
         return searchQuery;
     }
 }
