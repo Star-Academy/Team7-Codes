@@ -1,6 +1,7 @@
+import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.function.Consumer;
 
 public class InvertedIndex {
 
@@ -10,66 +11,57 @@ public class InvertedIndex {
         dictionary = new HashMap<>();
     }
 
-    public void add(String word, String documentName) {
+    public void add(final String word, final String documentName) {
         if (dictionary.containsKey(word)) {
             dictionary.get(word).add(documentName);
             return;
         }
-        HashSet<String> documentsName = new HashSet<>();
+        final HashSet<String> documentsName = new HashSet<>();
         documentsName.add(documentName);
         dictionary.put(word, documentsName);
     }
 
-    public HashSet<String> findSingleWord(String word) throws Exception {
+    private HashSet<String> findSingleWord(final String word) throws Exception {
         if (dictionary.containsKey(word)) {
             return dictionary.get(word);
         }
         throw new Exception("No items match your search");
     }
 
-    public HashSet<String> advanceFind(HashSet<String> mustIncludeWords, HashSet<String> includeWords,
-            HashSet<String> excludeWords) throws Exception{
-        HashSet<String> result = new HashSet<>();
-        mustIncludeWords.forEach(new Consumer<String>() {
-            @Override
-            public void accept(String t) {
-                try {
-                    HashSet<String> resultForSingleWord = findSingleWord(t);
-                    if (result.size() == 0) {
-                        result.addAll(resultForSingleWord);
-                    } else {
-                        result.retainAll(resultForSingleWord);
-                    }
-                } catch (Exception e) {
-                    // Just no result for this word ... nothing important
-                }
-            }
-        });
-        includeWords.forEach(new Consumer<String>() {
-            @Override
-            public void accept(String t) {
-                try {
-                    HashSet<String> resultForSingleWord = findSingleWord(t);
-                    result.addAll(resultForSingleWord);
-                } catch (Exception e) {
-                    // Just no result for this word ... nothing important
-                }
-            }
-        });
-        excludeWords.forEach(new Consumer<String>(){
-            @Override
-            public void accept(String t) {
-                try {
-                    HashSet<String> resultForSingleWord = findSingleWord(t);
-                    result.removeAll(resultForSingleWord);
-                } catch (Exception e) {
-                    // Just no result for this word ... nothing important
-                }
-            }           
-        });
-        if (result.size() == 0){
+    public SearchQuery stringToSearchQuery(final String query) {
+        return SearchQuery.parseString(query);
+    }
+
+    public HashSet<String> advanceFind(final String query) throws Exception {
+        final HashSet<String> result = new HashSet<>();
+        final SearchQuery searchQuery = stringToSearchQuery(query);
+
+        try {
+            String first = (String) searchQuery.getMustIncludeWords().toArray()[0];
+            result.addAll(findSingleWord(first));
+        } catch (Exception e) {
+            // Just no result for this word ... nothing important
+        }
+
+        processSet(result, searchQuery.getMustIncludeWords(), HashSet.class.getMethod("retainAll", Collection.class));
+        processSet(result, searchQuery.getIncludeWords(), HashSet.class.getMethod("addAll", Collection.class));
+        processSet(result, searchQuery.getExcludeWords(), HashSet.class.getMethod("removeAll", Collection.class));
+
+        if (result.size() == 0) {
             throw new Exception("No items match your search");
         }
+
         return result;
     }
+
+    private void processSet(final HashSet<String> result, final HashSet<String> set, Method method) {
+        set.forEach(t -> {
+            try {
+                    final HashSet<String> resultForSingleWord = findSingleWord(t);
+                    method.invoke(result, resultForSingleWord);
+                } catch (Exception e) {
+                    // Just no result for this word ... nothing important
+                }});
+    }
+
 }

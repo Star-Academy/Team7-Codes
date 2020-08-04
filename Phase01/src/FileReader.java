@@ -2,33 +2,32 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-
-
 public class FileReader {
-    InvertedIndex invertedIndex;
+
+    private InvertedIndex invertedIndex;
+
     public FileReader(InvertedIndex invertedIndex) {
         this.invertedIndex = invertedIndex;
     }
 
-    public void readAllFiles(){
-        File path = new File("D:\\Downloads\\SampleEnglishData\\EnglishData");
-        File[] documents = path.listFiles();
+    public void readAllFiles(String path){
+        File file = new File(path);
+        File[] documents = file.listFiles();
         for(File document : documents)
             readFile(document);
     }
 
-    public void readFile(File document) {
+    private void readFile(File document) {
         try {
             Scanner input = new Scanner(document);
-            // System.out.println(document.getName());
             while (input.hasNext()) {
-                String line = input.next();
-                invertedIndex.add(line, document.getName());
-                // System.out.println(line);
+                String word = input.next();
+                word = Tokenizer.normalize(word);
+                invertedIndex.add(word, document.getName());
             }
+            input.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
-
 }
