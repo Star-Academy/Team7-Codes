@@ -21,7 +21,7 @@ public class InvertedIndex {
         dictionary.put(word, documentsName);
     }
 
-    public HashSet<String> findSingleWord(final String word) throws Exception {
+    private HashSet<String> findSingleWord(final String word) throws Exception {
         if (dictionary.containsKey(word)) {
             return dictionary.get(word);
         }
@@ -50,7 +50,7 @@ public class InvertedIndex {
         if (result.size() == 0) {
             throw new Exception("No items match your search");
         }
-        
+
         return result;
     }
 

@@ -27,7 +27,11 @@ public class SearchQuery {
     public static SearchQuery parseString(String query) {
         SearchQuery searchQuery = new SearchQuery();
         String[] subs = query.split(" ");
+        addSingleWord(searchQuery, subs);
+        return searchQuery;
+    }
 
+    private static void addSingleWord(SearchQuery searchQuery, String[] subs){
         for (String word : subs) {
             switch(word.charAt(0)){
                 case '+':
@@ -40,7 +44,5 @@ public class SearchQuery {
                      searchQuery.mustIncludeWords.add(word);
              }
         }
-        
-        return searchQuery;
     }
 }
