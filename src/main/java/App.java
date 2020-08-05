@@ -1,14 +1,22 @@
+import java.io.File;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class App {
 
-    public static void runCommandLine() {
-        //String path = "/media/hassan/new part/code-star/EnglishData";  // linux path
-        String path = "D:\\Downloads\\SampleEnglishData\\EnglishData"; // Windows path
-        InvertedIndex invertedIndex = new InvertedIndex();
-        FileReader fileReader = new FileReader(invertedIndex);
+    private final String path;
+    private final InvertedIndex invertedIndex;
+    private final FileReader fileReader;
+
+    public App() {
+        //path = "/media/hassan/new part/code-star/EnglishData";  // linux path
+        path = "D:\\Downloads\\SampleEnglishData\\EnglishData"; // Windows path
+        invertedIndex = new InvertedIndex();
+        fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles(path);
+    }
+
+    public void runCommandLine() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Search : ");
         String words = scanner.nextLine();
@@ -24,7 +32,7 @@ public class App {
         scanner.close();
     }
 
-    private static void printOutput(HashSet<String> result, String words){
+    private void printOutput(HashSet<String> result, String words){
         System.out.println(result.size() + " documents with \"" + words + "\" : ");
         result.forEach(res->System.out.println("\t" + res)); 
     }  
