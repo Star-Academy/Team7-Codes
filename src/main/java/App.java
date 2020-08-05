@@ -1,18 +1,13 @@
-import java.io.File;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class App {
 
-    private final String path;
     private final InvertedIndex invertedIndex;
-    private final FileReader fileReader;
 
-    public App() {
-        //path = "/media/hassan/new part/code-star/EnglishData";  // linux path
-        path = "D:\\Downloads\\SampleEnglishData\\EnglishData"; // Windows path
+    public App(String path) {
         invertedIndex = new InvertedIndex();
-        fileReader = new FileReader(invertedIndex);
+        FileReader fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles(path);
     }
 
