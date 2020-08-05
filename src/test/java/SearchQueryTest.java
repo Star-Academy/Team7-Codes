@@ -9,10 +9,12 @@ import static org.junit.Assert.*;
 public class SearchQueryTest {
 
     private SearchQuery searchQuery;
+    private SearchQuery emptySearchQuery;
 
     @Before
     public void init() {
         searchQuery = SearchQuery.parseString("first -second +third anotherNormal +anotherPlus -anotherMinus");
+        emptySearchQuery = SearchQuery.parseString("         ");
     }
 
     @Test
@@ -34,5 +36,12 @@ public class SearchQueryTest {
         HashSet<String> expectedExclude = new HashSet<>(Arrays.asList("second", "anotherMinus"));
         HashSet<String> actualExclude = searchQuery.getExcludeWords();
         assertEquals(expectedExclude, actualExclude);
+    }
+
+    @Test
+    public void emptySearchQueryTest() {
+        assertTrue(emptySearchQuery.getMustIncludeWords().isEmpty());
+        assertTrue(emptySearchQuery.getExcludeWords().isEmpty());
+        assertTrue(emptySearchQuery.getIncludeWords().isEmpty());
     }
 }
