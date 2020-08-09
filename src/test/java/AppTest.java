@@ -1,22 +1,19 @@
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 
 public class AppTest {
 
-    @Mock private InvertedIndex invertedIndexMock = mock(InvertedIndex.class);
-    @Mock private CommandReader commandReaderMock = mock(CommandReader.class);
+    @Mock private final InvertedIndex invertedIndexMock = mock(InvertedIndex.class);
+    @Mock private final CommandReader commandReaderMock = mock(CommandReader.class);
 
-     private App app;
+    private App app;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -48,10 +45,4 @@ public class AppTest {
         app.runCommandLine();
         Mockito.verify(commandReaderMock).sendResponse(exceptionMessage);
     }
-
-    @Test
-    public void readFileToInvertedIndexTest() {
-
-    }
-
 }
