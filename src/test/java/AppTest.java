@@ -1,23 +1,33 @@
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+
 public class AppTest {
 
-    @Mock private InvertedIndex invertedIndexMock;
-    @Mock private CommandReader commandReaderMock;
+    @Mock private InvertedIndex invertedIndexMock = mock(InvertedIndex.class);
+    @Mock private CommandReader commandReaderMock = mock(CommandReader.class);
 
-    @InjectMocks private App app;
+     private App app;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
+    @Before
+    public void init(){
+        app = new App("src/test/resources/NotEmptyDir", commandReaderMock, invertedIndexMock);
+    }
+
+
     @Test
     public void runCommandLineTest() {
-
         String userInput = "THIS SHOULD BE SENT TO INVERTED_INDEX AFTER NORMALIZATION";
         String userInputNormalized = "this should be sent to inverted_index after normalization";
         Mockito.when(commandReaderMock.readCommand()).thenReturn(userInput);
