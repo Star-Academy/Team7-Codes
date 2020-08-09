@@ -1,20 +1,29 @@
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class App {
 
     private final InvertedIndex invertedIndex;
+    private final CommandReader commandReader;
 
-    public App(String path) {
-        invertedIndex = new InvertedIndex();
+    public App(CommandReader commandReader, InvertedIndex invertedIndex) {
+        this.invertedIndex = invertedIndex;
+        this.commandReader = commandReader;
+    }
+
+    public App(String path, CommandReader commandReader, InvertedIndex invertedIndex) {
+        this(commandReader, invertedIndex);
+        if (path != null)
+            readFileToInvertedIndex(path);
+    }
+
+    private void readFileToInvertedIndex(String path) {
         FileReader fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles(path);
     }
 
     public void runCommandLine() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Search : ");
-        String words = scanner.nextLine();
+        commandReader.sendResponse("Search : ");
+        String words = commandReader.readCommand();
         words = Tokenizer.normalize(words);
 
         try {
@@ -23,12 +32,12 @@ public class App {
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        scanner.close();
+
+        commandReader.closeResources();
     }
 
     private void printOutput(HashSet<String> result, String words){
-        System.out.println(result.size() + " documents with \"" + words + "\" : ");
-        result.forEach(res->System.out.println("\t" + res)); 
+        commandReader.sendResponse(result.size() + " documents with \"" + words + "\" : ");
+        result.forEach(singleResult -> commandReader.sendResponse("\t" + singleResult));
     }  
 }
