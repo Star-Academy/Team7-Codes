@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class FileReader {
 
-    private InvertedIndex invertedIndex;
+    private final InvertedIndex invertedIndex;
 
     public FileReader(InvertedIndex invertedIndex) {
         this.invertedIndex = invertedIndex;
@@ -13,6 +13,7 @@ public class FileReader {
     public void readAllFiles(String path){
         File file = new File(path);
         File[] documents = file.listFiles();
+        assert documents != null;
         for(File document : documents)
             readFile(document);
     }
