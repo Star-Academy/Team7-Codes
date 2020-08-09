@@ -30,7 +30,7 @@ public class App {
             HashSet<String> result = invertedIndex.advanceFind(words);
             printOutput(result, words);
         } catch(Exception e) {
-            System.out.println(e.getMessage());
+            commandReader.sendResponse(e.getMessage());
         }
 
         commandReader.closeResources();

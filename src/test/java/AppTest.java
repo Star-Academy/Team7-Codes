@@ -29,4 +29,19 @@ public class AppTest {
         }
     }
 
+    @Test
+    public void notFoundTest() throws Exception {
+        String userInput = "not found query";
+        String exceptionMessage = "not found message";
+        Mockito.when(commandReaderMock.readCommand()).thenReturn(userInput);
+        Mockito.when(invertedIndexMock.advanceFind(userInput)).thenThrow(new Exception(exceptionMessage));
+        app.runCommandLine();
+        Mockito.verify(commandReaderMock).sendResponse(exceptionMessage);
+    }
+
+    @Test
+    public void readFileToInvertedIndexTest() {
+
+    }
+
 }
