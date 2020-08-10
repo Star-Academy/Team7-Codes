@@ -1,16 +1,25 @@
 using System.Collections.Generic;
+using Phase04.Model;
+using System.IO;
+using static Newtonsoft.Json.JsonConvert;
 
 namespace Phase04
 {
     public class Database
     {
-        public List<Phase04.Model.Student> GetStudents() 
+        private const string StudentsFile = "Resources/Students.json";
+        private const string ScoresFile = "Resources/Scores.json";
+        public List<Student> GetStudents() 
         {
-            return null;
+            string studentsJson = File.ReadAllText(StudentsFile);
+            var students = DeserializeObject<List<Student>>(studentsJson);
+            return students;
         }
-        public List<Phase04.Model.LessonScore> GetScores() 
+        public List<LessonScore> GetScores() 
         {
-            return null;    
+            string scoresJson = File.ReadAllText(ScoresFile);
+            var scores = DeserializeObject<List<LessonScore>>(scoresJson);
+            return scores;   
         }
     }
 }

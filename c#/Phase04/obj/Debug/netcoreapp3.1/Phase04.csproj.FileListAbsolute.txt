@@ -11,3 +11,5 @@ D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.pdb
 D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.dll
 D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.pdb
 D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.genruntimeconfig.cache
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.csproj.CopyComplete

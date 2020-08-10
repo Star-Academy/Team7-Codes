@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NVtXMHjpQuzEZS5VDzUBmyGf8yTsZ8nWZiAwJZXYzwbzUGkiToIsu1Wpp6HiYlhbxuAQjGAVZ6Oy6FO60Fq83Q==",
+  "dgSpecHash": "UI2MD5en5Ouf6MOpbDifTVmDZ88TQ5h+Oe/MELZAAo4yUOgITfFLSH5UhF5QhdhDUkfxJrVyjq4Lw+VOKSs3VQ==",
   "success": true,
   "projectFilePath": "D:\\Work\\Team7-Codes\\c#\\Phase04\\Phase04.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Parsa\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
