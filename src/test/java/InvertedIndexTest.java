@@ -1,23 +1,11 @@
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.internal.matchers.Any;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 public class InvertedIndexTest {
 
@@ -32,7 +20,7 @@ public class InvertedIndexTest {
     HashSet<String> mahdi = new HashSet<>(Collections.singletonList("1"));
 
     @Before
-    public void initAddTest() throws Exception {
+    public void initAddTest() {
         invertedIndex.add("hassn", "1");
         invertedIndex.add("hassan", "2");
         invertedIndex.add("hassan", "3");
@@ -66,7 +54,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind2() {
-        temp = new HashSet<>();
+        HashSet<String>temp = new HashSet<>();
         temp.addAll(parsa);
         temp.addAll(jalal);
         temp.removeAll(jalil);
@@ -79,8 +67,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind3() {
-        temp = new HashSet<>();
-        temp.addAll(parsa);
+        HashSet<String> temp = new HashSet<>(parsa);
         temp.removeAll(mahdi);
         try {
             assertEquals(temp, invertedIndex.advanceFind("+parsa -mahdi"));
@@ -93,7 +80,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind4() {
-        temp = new HashSet<>();
+        HashSet<String> temp = new HashSet<>();
         try {
             assertEquals(temp, invertedIndex.advanceFind("hamid"));
             fail();
@@ -104,7 +91,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind5() {
-        temp = new HashSet<>();
+        HashSet<String> temp = new HashSet<>();
         try {
             assertEquals(temp, invertedIndex.advanceFind("-hamid"));
             fail();
@@ -115,8 +102,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind6() {
-        temp = new HashSet<>();
-        temp.addAll(soheil);
+        HashSet<String> temp = new HashSet<>(soheil);
         temp.removeAll(hassan);
         try {
             assertEquals(temp, invertedIndex.advanceFind("+soheil -hassan"));
@@ -128,8 +114,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind7() {
-        temp = new HashSet<>();
-        temp.addAll(soheil);
+        HashSet<String> temp = new HashSet<>(soheil);
         try {
             assertEquals(temp, invertedIndex.advanceFind("soheil"));
         } catch (Exception ignored) {
@@ -139,8 +124,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind8() {
-        temp = new HashSet<>();
-        temp.addAll(soheil);
+        HashSet<String> temp = new HashSet<>(soheil);
         temp.retainAll(hassan);
         temp.addAll(parsa);
         temp.removeAll(jalil);
@@ -153,8 +137,7 @@ public class InvertedIndexTest {
 
     @Test
     public void testAdvanceFind9() {
-        temp = new HashSet<>();
-        temp.addAll(soheil);
+        HashSet<String> temp = new HashSet<>(soheil);
         temp.retainAll(hassan);
         temp.retainAll(parsa);
         temp.addAll(jalil);
@@ -165,9 +148,4 @@ public class InvertedIndexTest {
             assertTrue(true);
         }
     }
-
-
-
-    }
-
 }
