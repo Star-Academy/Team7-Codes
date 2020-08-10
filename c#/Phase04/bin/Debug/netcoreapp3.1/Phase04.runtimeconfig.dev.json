@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\Parsa\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Parsa\\.nuget\\packages"
+      "/home/hassan/.dotnet/store/|arch|/|tfm|",
+      "/home/hassan/.nuget/packages"
     ]
   }
 }

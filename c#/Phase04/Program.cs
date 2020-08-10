@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 
 namespace Phase04
 {
@@ -6,7 +8,11 @@ namespace Phase04
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Database database = new Database();
+            Processor processor = new Processor();
+            processor.PrintTopStudents(database.GetStudents(), database.GetScores(), 8);
         }
+
+
     }
 }

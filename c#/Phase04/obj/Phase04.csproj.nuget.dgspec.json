@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\Team7-Codes\\c#\\Phase04\\Phase04.csproj": {}
+    "/home/hassan/Desktop/Team7-Codes/c#/Phase04/Phase04.csproj": {}
   },
   "projects": {
-    "D:\\Work\\Team7-Codes\\c#\\Phase04\\Phase04.csproj": {
+    "/home/hassan/Desktop/Team7-Codes/c#/Phase04/Phase04.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\Team7-Codes\\c#\\Phase04\\Phase04.csproj",
+        "projectUniqueName": "/home/hassan/Desktop/Team7-Codes/c#/Phase04/Phase04.csproj",
         "projectName": "Phase04",
-        "projectPath": "D:\\Work\\Team7-Codes\\c#\\Phase04\\Phase04.csproj",
-        "packagesPath": "C:\\Users\\Parsa\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\Team7-Codes\\c#\\Phase04\\obj\\",
+        "projectPath": "/home/hassan/Desktop/Team7-Codes/c#/Phase04/Phase04.csproj",
+        "packagesPath": "/home/hassan/.nuget/packages/",
+        "outputPath": "/home/hassan/Desktop/Team7-Codes/c#/Phase04/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Parsa\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/hassan/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -56,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     }
