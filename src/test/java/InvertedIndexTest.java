@@ -24,6 +24,13 @@ public class InvertedIndexTest {
 
     InvertedIndex invertedIndex = new InvertedIndex();
 
+    HashSet<String> hassan = new HashSet<>(Arrays.asList("1", "2", "3", "4"));
+    HashSet<String> parsa = new HashSet<>(Collections.singletonList("1"));
+    HashSet<String> jalal = new HashSet<>(Collections.singletonList("2"));
+    HashSet<String> jalil = new HashSet<>(Collections.singletonList("3"));
+    HashSet<String> soheil = new HashSet<>(Arrays.asList("3", "4"));
+    HashSet<String> mahdi = new HashSet<>(Collections.singletonList("1"));
+
     @Before
     public void initAddTest() throws Exception {
         invertedIndex.add("hassn", "1");
@@ -43,21 +50,10 @@ public class InvertedIndexTest {
 
         invertedIndex.add("mahdi", "1");
 
-//
-//        HashSet<String> s = invertedIndex.advanceFind("hassan +parsa");
-//        s.forEach(str -> System.out.println(str));
-
     }
 
     @Test
-    public void testAdvanceFind(){
-        HashSet<String> hassan = new HashSet<>(Arrays.asList("1", "2", "3", "4"));
-        HashSet<String> parsa = new HashSet<>(Collections.singletonList("1"));
-        HashSet<String> jalal = new HashSet<>(Collections.singletonList("2"));
-        HashSet<String> jalil = new HashSet<>(Collections.singletonList("3"));
-        HashSet<String> soheil = new HashSet<>(Arrays.asList("3", "4"));
-        HashSet<String> mahdi = new HashSet<>(Collections.singletonList("1"));
-
+    public void testAdvanceFind1() {
         HashSet<String> temp = new HashSet<>();
         temp.addAll(hassan);
         temp.addAll(parsa);
@@ -66,7 +62,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             fail();
         }
+    }
 
+    @Test
+    public void testAdvanceFind2() {
         temp = new HashSet<>();
         temp.addAll(parsa);
         temp.addAll(jalal);
@@ -76,7 +75,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             fail();
         }
+    }
 
+    @Test
+    public void testAdvanceFind3() {
         temp = new HashSet<>();
         temp.addAll(parsa);
         temp.removeAll(mahdi);
@@ -86,7 +88,11 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             assertTrue(true);
         }
+    }
 
+
+    @Test
+    public void testAdvanceFind4() {
         temp = new HashSet<>();
         try {
             assertEquals(temp, invertedIndex.advanceFind("hamid"));
@@ -94,7 +100,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             assertTrue(true);
         }
+    }
 
+    @Test
+    public void testAdvanceFind5() {
         temp = new HashSet<>();
         try {
             assertEquals(temp, invertedIndex.advanceFind("-hamid"));
@@ -102,7 +111,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             assertTrue(true);
         }
+    }
 
+    @Test
+    public void testAdvanceFind6() {
         temp = new HashSet<>();
         temp.addAll(soheil);
         temp.removeAll(hassan);
@@ -112,7 +124,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             assertTrue(true);
         }
+    }
 
+    @Test
+    public void testAdvanceFind7() {
         temp = new HashSet<>();
         temp.addAll(soheil);
         try {
@@ -120,7 +135,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             fail();
         }
+    }
 
+    @Test
+    public void testAdvanceFind8() {
         temp = new HashSet<>();
         temp.addAll(soheil);
         temp.retainAll(hassan);
@@ -131,7 +149,10 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             fail();
         }
+    }
 
+    @Test
+    public void testAdvanceFind9() {
         temp = new HashSet<>();
         temp.addAll(soheil);
         temp.retainAll(hassan);
@@ -143,6 +164,7 @@ public class InvertedIndexTest {
         } catch (Exception ignored) {
             assertTrue(true);
         }
+    }
 
 
 
