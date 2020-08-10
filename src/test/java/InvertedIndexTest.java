@@ -64,6 +64,7 @@ public class InvertedIndexTest {
         try {
             assertEquals(temp, invertedIndex.advanceFind("hassan +parsa"));
         } catch (Exception ignored) {
+            fail();
         }
 
         temp = new HashSet<>();
@@ -73,6 +74,7 @@ public class InvertedIndexTest {
         try {
             assertEquals(temp, invertedIndex.advanceFind("+parsa +jalal -jalil"));
         } catch (Exception ignored) {
+            fail();
         }
 
         temp = new HashSet<>();
@@ -82,6 +84,7 @@ public class InvertedIndexTest {
             assertEquals(temp, invertedIndex.advanceFind("+parsa -mahdi"));
             fail();
         } catch (Exception ignored) {
+            assertTrue(true);
         }
 
         temp = new HashSet<>();
@@ -89,6 +92,7 @@ public class InvertedIndexTest {
             assertEquals(temp, invertedIndex.advanceFind("hamid"));
             fail();
         } catch (Exception ignored) {
+            assertTrue(true);
         }
 
         temp = new HashSet<>();
@@ -96,6 +100,7 @@ public class InvertedIndexTest {
             assertEquals(temp, invertedIndex.advanceFind("-hamid"));
             fail();
         } catch (Exception ignored) {
+            assertTrue(true);
         }
 
         temp = new HashSet<>();
@@ -105,6 +110,7 @@ public class InvertedIndexTest {
             assertEquals(temp, invertedIndex.advanceFind("+soheil -hassan"));
             fail();
         } catch (Exception ignored) {
+            assertTrue(true);
         }
 
         temp = new HashSet<>();
@@ -112,6 +118,7 @@ public class InvertedIndexTest {
         try {
             assertEquals(temp, invertedIndex.advanceFind("soheil"));
         } catch (Exception ignored) {
+            fail();
         }
 
         temp = new HashSet<>();
@@ -122,6 +129,7 @@ public class InvertedIndexTest {
         try {
             assertEquals(temp, invertedIndex.advanceFind("soheil hassan -jalil +parsa"));
         } catch (Exception ignored) {
+            fail();
         }
 
         temp = new HashSet<>();
@@ -133,6 +141,7 @@ public class InvertedIndexTest {
             assertEquals(temp, invertedIndex.advanceFind("soheil hassan -jalil parsa"));
             fail();
         } catch (Exception ignored) {
+            assertTrue(true);
         }
 
 
