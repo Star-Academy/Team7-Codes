@@ -8,6 +8,6 @@ Star academy internship
 - [Phase02](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase02-CodeReview.md)
 - [Phase03](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase03-UnitTest.md)
 - [Phase04](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase04-CSharp/Phase04-CSharp.md)
-## Contributers
+## Contributors
 - Parsa Mohammadian
 - Hassan Zaker
