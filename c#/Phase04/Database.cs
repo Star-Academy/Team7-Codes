@@ -1,12 +1,14 @@
+using System.Collections.Generic;
+
 namespace Phase04
 {
     public class Database
     {
-        public List<Students> GetStudents() 
+        public List<Phase04.Model.Student> GetStudents() 
         {
             return null;
         }
-        public List<Score> GetScores() 
+        public List<Phase04.Model.LessonScore> GetScores() 
         {
             return null;    
         }

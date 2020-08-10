@@ -1,6 +1,6 @@
 namespace Phase04.Model
 {
-    public class Score
+    public class LessonScore
     {
         public int StudentNumber{get; set;}
         public string Lesson{get; set;}

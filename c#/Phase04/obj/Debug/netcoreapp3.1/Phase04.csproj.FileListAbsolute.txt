@@ -1,0 +1,13 @@
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.csprojAssemblyReference.cache
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.AssemblyInfoInputs.cache
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.AssemblyInfo.cs
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.csproj.CoreCompileInputs.cache
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.exe
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.deps.json
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.runtimeconfig.json
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.runtimeconfig.dev.json
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.dll
+D:\Work\Team7-Codes\c#\Phase04\bin\Debug\netcoreapp3.1\Phase04.pdb
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.dll
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.pdb
+D:\Work\Team7-Codes\c#\Phase04\obj\Debug\netcoreapp3.1\Phase04.genruntimeconfig.cache
