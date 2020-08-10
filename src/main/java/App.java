@@ -10,13 +10,7 @@ public class App {
         this.commandReader = commandReader;
     }
 
-    public App(String path, CommandReader commandReader, InvertedIndex invertedIndex) {
-        this(commandReader, invertedIndex);
-        if (path != null)
-            readFileToInvertedIndex(path);
-    }
-
-    private void readFileToInvertedIndex(String path) {
+    public void readFileToInvertedIndex(String path) {
         FileReader fileReader = new FileReader(invertedIndex);
         fileReader.readAllFiles(path);
     }

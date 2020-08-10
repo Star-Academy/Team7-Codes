@@ -19,7 +19,7 @@ public class AppTest {
 
     @Before
     public void init(){
-        app = new App("src/test/resources/NotEmptyDir", commandReaderMock, invertedIndexMock);
+        app = new App(commandReaderMock, invertedIndexMock);
     }
 
 
