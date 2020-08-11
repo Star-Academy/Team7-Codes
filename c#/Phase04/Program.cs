@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Phase04.Model;
 
 namespace Phase04
 {
@@ -10,7 +10,8 @@ namespace Phase04
         {
             Database database = new Database();
             Processor processor = new Processor();
-            processor.PrintTopStudents(database.GetStudents(), database.GetScores(), 8);
+            var topStudents = processor.CalculateTopStudents(database.GetStudents(), database.GetScores(), 3);
+            ListPrinter.printIEnumerable(topStudents);
         }
 
 
