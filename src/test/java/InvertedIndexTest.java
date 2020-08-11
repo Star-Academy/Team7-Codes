@@ -65,16 +65,11 @@ public class InvertedIndexTest {
         }
     }
 
-    @Test
-    public void testAdvanceFind3() {
+    @Test(expected = Exception.class)
+    public void testAdvanceFind3() throws Exception {
         HashSet<String> temp = new HashSet<>(parsa);
         temp.removeAll(mahdi);
-        try {
-            assertEquals(temp, invertedIndex.advanceFind("+parsa -mahdi"));
-            fail();
-        } catch (Exception ignored) {
-            assertTrue(true);
-        }
+        assertEquals(temp, invertedIndex.advanceFind("+parsa -mahdi"));
     }
 
 
@@ -113,13 +108,9 @@ public class InvertedIndexTest {
     }
 
     @Test
-    public void testAdvanceFind7() {
+    public void testAdvanceFind7() throws Exception {
         HashSet<String> temp = new HashSet<>(soheil);
-        try {
-            assertEquals(temp, invertedIndex.advanceFind("soheil"));
-        } catch (Exception ignored) {
-            fail();
-        }
+        assertEquals(temp, invertedIndex.advanceFind("soheil"));
     }
 
     @Test
