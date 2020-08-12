@@ -18,8 +18,8 @@ namespace Phase04
         {
             var students = database.GetStudents();
             var scores = database.GetScores();
-            return students.GroupJoin(scores, st => st.StudentNumber, sc => sc.StudentNumber,
-                (st, ssc) => new Student(st.FirstName, st.LastName, ssc.Average(c => c.Score)))
+            return students.GroupJoin(scores, students => students.StudentNumber, scores => scores.StudentNumber,
+                (students, studentsJoinScores) => new Student(students.FirstName, students.LastName, studentsJoinScores.Average(c => c.Score)))
                 .OrderByDescending(s => s.Score)
                 .Take(numberOfStudents);
 

@@ -9,12 +9,14 @@ namespace Phase04
     {
         private const string StudentsFile = "Resources/Students.json";
         private const string ScoresFile = "Resources/Scores.json";
+        
         public List<Student> GetStudents() 
         {
             string studentsJson = File.ReadAllText(StudentsFile);
             var students = DeserializeObject<List<Student>>(studentsJson);
             return students;
         }
+
         public List<LessonScore> GetScores() 
         {
             string scoresJson = File.ReadAllText(ScoresFile);

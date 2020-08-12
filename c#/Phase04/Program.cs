@@ -8,8 +8,8 @@ namespace Phase04
     {
         static void Main(string[] args)
         {
-            Database database = new Database();
-            Processor processor = new Processor(database);
+            var database = new Database();
+            var processor = new Processor(database);
             var topStudents = processor.CalculateTopStudents(3);
             ListPrinter.PrintIEnumerable(topStudents);
         }
