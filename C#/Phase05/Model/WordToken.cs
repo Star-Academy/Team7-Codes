@@ -5,6 +5,8 @@ namespace Phase05.Model
     public class WordToken<T> : IToken<T>
     {
         public T Content{get; set;}
+
+
     }
 
 }
