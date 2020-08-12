@@ -6,7 +6,9 @@ namespace Phase05.Model
     public class Normalizer
     {
         public IToken<string> Normalize(IToken<string> token) {
-            return null;
+            var originalText = token.Content;
+            var normalizedText = originalText.ToLower();
+            return new WordToken(normalizedText);
         }
     }
 }
