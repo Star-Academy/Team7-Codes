@@ -3,9 +3,9 @@ using Phase05.Model;
 
 namespace Phase05.Model
 {
-    public class Normalizer<T>
+    public class Normalizer
     {
-        public IToken<T> Normalize(IToken<T> token) {
+        public IToken<string> Normalize(IToken<string> token) {
             return null;
         }
     }
