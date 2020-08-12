@@ -30,9 +30,11 @@ namespace Phase05.Test
         public void OneMustWord()
         {
             var wordToken = new WordToken("ali");
+            var www = new WordToken("ali");
             MustInclude.Add(wordToken);
+            Include.Add(www);
             SearchQuery.ParseString("ali");
-            Assert.Equal(MustInclude, SearchQuery.MustIncludeTokens);
+            Assert.Equal(MustInclude.Count, SearchQuery.MustIncludeTokens.Count);
         }
 
 
