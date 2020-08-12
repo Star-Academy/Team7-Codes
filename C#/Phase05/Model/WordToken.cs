@@ -2,11 +2,14 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class WordToken<T> : IToken<T>
+    public class WordToken : IToken<string>
     {
-        public T Content{get; set;}
+        
+        public string Content { get; set; }
 
-
+        public WordToken(string word)
+        {
+            this.Content = word;
+        }
     }
-
 }
