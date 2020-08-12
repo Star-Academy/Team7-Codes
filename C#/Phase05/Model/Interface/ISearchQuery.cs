@@ -1,7 +1,14 @@
+using System.Collections.Generic;
+
+
 namespace Phase05.Model.Interface
 {
-    public interface ISearchQuery
+    public interface ISearchQuery<T>
     {
-         void ParseString(string query);
+        HashSet<IToken<T>> MustIncludeTokens{get;}
+        HashSet<IToken<T>> IncludeTokens{get;}
+        HashSet<IToken<T>> ExcludeTokens{get;}
+
+        void ParseString(string query);
     }
 }

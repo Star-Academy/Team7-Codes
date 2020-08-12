@@ -2,9 +2,9 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class AddQuery : IAddQuery
+    public class AddQuery<T, E> : IAddQuery<T,E>
     {
-        public IToken Token { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public ITokenInfo TokenInfo { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public IToken<T> Token { get; set; }
+        public ITokenInfo<E> TokenInfo { get; set; }
     }
 }

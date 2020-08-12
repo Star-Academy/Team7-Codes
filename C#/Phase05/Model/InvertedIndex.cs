@@ -3,14 +3,14 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class InvertedIndex : IIndex
+    public class InvertedIndex<T, E> : IIndex<T, E>
     {
-        public void Add(IAddQuery addQuery)
+        public void Add(IAddQuery<T, E> addQuery)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<ISearchQuery> Find(ISearchQuery searchQuery)
+        public List<ITokenInfo<E>> Find(ISearchQuery<T> searchQuery)
         {
             throw new System.NotImplementedException();
         }

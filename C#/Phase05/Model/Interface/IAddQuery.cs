@@ -1,10 +1,10 @@
 namespace Phase05.Model.Interface
 {
-    public interface IAddQuery
+    public interface IAddQuery<T, E>
     {
-        IToken Token { get; set; }
+        IToken<T> Token { get; set; }
 
-        ITokenInfo TokenInfo { get; set; }
+        ITokenInfo<E> TokenInfo { get; set; }
 
     }
 }

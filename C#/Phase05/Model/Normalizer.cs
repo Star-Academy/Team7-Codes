@@ -2,9 +2,9 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class Normalizer
+    public class Normalizer<T>
     {
-        public IToken Normalize(IToken token)
+        public IToken<T> Normalize(IToken<T> token)
         {
             return null;
         }

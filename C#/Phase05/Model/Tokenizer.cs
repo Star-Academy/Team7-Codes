@@ -2,11 +2,11 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class Tokenizer
+    public class Tokenizer<T, E>
     {
-        private IIndex index;
+        private IIndex<T, E> index;
 
-        public Tokenizer(IIndex index)
+        public Tokenizer(IIndex<T, E> index)
         {
             this.index = index;
         }
