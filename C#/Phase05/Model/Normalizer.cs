@@ -1,4 +1,5 @@
 using Phase05.Model.Interface;
+using Phase05.Model;
 
 namespace Phase05.Model
 {
@@ -6,7 +7,9 @@ namespace Phase05.Model
     {
         public IToken Normalize(IToken token)
         {
-            return null;
+            string originalText = "";
+            var resultToken = new WordToken(originalText.ToLower());
+            return resultToken;
         }
     }
 }
