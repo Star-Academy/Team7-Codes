@@ -13,7 +13,5 @@ namespace Phase04
             var topStudents = processor.CalculateTopStudents(3);
             ListPrinter.PrintIEnumerable(topStudents);
         }
-
-
     }
 }

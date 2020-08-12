@@ -24,8 +24,5 @@ namespace Phase04
                 .Take(numberOfStudents);
 
         }
-
-
-
     }
 }
