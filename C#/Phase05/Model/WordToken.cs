@@ -11,5 +11,15 @@ namespace Phase05.Model
         {
             this.Content = word;
         }
+
+        public override bool Equals(object obj)
+        {
+            var word = obj as WordToken;
+            
+            if(word == null)
+                return false;
+            else
+                return this.Content.Equals(word.Content);
+        }
     }
 }
