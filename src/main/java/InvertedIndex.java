@@ -28,7 +28,7 @@ public class InvertedIndex {
         throw new Exception("No items match your search");
     }
 
-    public SearchQuery stringToSearchQuery(final String query) {
+    private SearchQuery stringToSearchQuery(final String query) {
         return SearchQuery.parseString(query);
     }
 
