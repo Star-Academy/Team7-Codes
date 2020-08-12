@@ -7,7 +7,7 @@ namespace Phase04
 {
     public class Processor
     {
-        private Database database { get; set; }
+        private Database database;
 
         public Processor(Database database)
         {
