@@ -6,5 +6,11 @@ namespace Phase05.Model
     {
         public IToken<T> Token { get; set; }
         public ITokenInfo<E> TokenInfo { get; set; }
+
+        public AddQuery(IToken<T> token, ITokenInfo<E> tokenInfo)
+        {
+            Token = token;
+            TokenInfo = tokenInfo;
+        }
     }
 }

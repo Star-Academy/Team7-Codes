@@ -2,8 +2,13 @@ using Phase05.Model.Interface;
 
 namespace Phase05.Model
 {
-    public class DocumentInfo<E> : ITokenInfo<E>
+    public class DocumentInfo : ITokenInfo<string>
     {
-        public E Content{get; set;}
+        public string Content{get; set;}
+
+        public DocumentInfo(string content)
+        {
+            Content = content;
+        }
     }
 }

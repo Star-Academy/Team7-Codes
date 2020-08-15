@@ -10,9 +10,12 @@ namespace Phase05.Test.Model
         [Fact]
         public void TokenizeDirectoryTest()
         {
-            // var mockIIndex = new Mock<IIndex>();
-            // //Tokenizer tokenizer = new Tokenizer<T, E>();
-            // mockIIndex.Setup(iIndex => iIndex.Add(It.Is<IAddQuery>(addQuery => addQuery != null)));
+            var mockIIndex = new Mock<IIndex<string, string>>();
+            Tokenizer tokenizer = new Tokenizer(mockIIndex.Object);
+            // IAddQuery<string, string> expected = new AddQuery(new WordToken("a"), new DocumentInfo<>);
+            // tokenizer.TokenizeDirectory("");
+            // mockIIndex.Setup(iIndex => iIndex.Add(It
+            //     .Is<IAddQuery<string, string>>(addQuery.equals())));
         }
     }
 }
