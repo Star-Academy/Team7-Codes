@@ -10,7 +10,7 @@ namespace Phase05.Model
 
         public WordToken(string word)
         {
-            this.Content = word;
+            Content = word;
         }
 
         public override bool Equals(object obj)
@@ -19,8 +19,8 @@ namespace Phase05.Model
             
             if(word == null)
                 return false;
-            else
-                return this.Content.Equals(word.Content);
+
+            return this.Content.Equals(word.Content);
         }
 
         public override int GetHashCode()
