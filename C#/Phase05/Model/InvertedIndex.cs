@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Phase05.Model.Interface;
 using System;
+using System.Linq;
 
 namespace Phase05.Model
 {
@@ -40,21 +41,18 @@ namespace Phase05.Model
 
         private void ProcessForMustTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
         {   
-            if(tokens.Count == 0)
+            if (tokens.Count == 0)
             {
                 return;
             }
-            foreach (var token in tokens)
-            {
-                try
-                {
-                    result.UnionWith(FindSingleToken(token));
-                    break;
-                }
-                catch
-                {
 
-                }
+            try
+            {
+            result.UnionWith(FindSingleToken(tokens.First()));
+            }
+            catch
+            {
+                
             }
 
             foreach (var token in tokens)
@@ -74,10 +72,6 @@ namespace Phase05.Model
 
         private void ProcessForIncludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
         {
-            if(tokens.Count == 0)
-            {
-                return;
-            }
             foreach(var token in tokens)
             {
                 try
@@ -93,10 +87,6 @@ namespace Phase05.Model
 
         private void ProcessForExcludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
         {
-            if(tokens.Count == 0)
-            {
-                return;
-            }
             foreach(var token in tokens)
             {
                 try
