@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Phase05.Model.Interface;
 
 namespace Phase05.Model
@@ -20,6 +21,11 @@ namespace Phase05.Model
                 return false;
             else
                 return this.Content.Equals(word.Content);
+        }
+
+        public override int GetHashCode()
+        {
+            return 1997410482 + EqualityComparer<string>.Default.GetHashCode(Content);
         }
     }
 }

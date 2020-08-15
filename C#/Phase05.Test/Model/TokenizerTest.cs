@@ -12,8 +12,8 @@ namespace Phase05.Test.Model
         public void TokenizeDirectoryTest()
         {
             InitializeTestFiles();
-            var mockIIndex = new Mock<IIndex<string, string>>();       
-            Tokenizer tokenizer = new Tokenizer(mockIIndex.Object);
+            var mockIIndex = new Mock<IIndex<string, string>>();
+            Tokenizer tokenizer = new Tokenizer(mockIIndex.Object, new Normalizer());
             tokenizer.TokenizeDirectory("Resources/Phase05.Test");
             VerifyMethodCall(mockIIndex);
             CleanTestFiles();
