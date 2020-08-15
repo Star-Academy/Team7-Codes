@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Phase05.Test.Model
 {
-    public abstract class TokenizerTest
+    public class TokenizerTest
     {
         [Fact]
         public void TokenizeDirectoryTest()
@@ -45,7 +45,7 @@ namespace Phase05.Test.Model
                 Directory.CreateDirectory(resourcesDirectoryPath);
             }
             var phase05TestDirectoryPath = "Resources/Phase05.Test";
-            if (Directory.Exists(phase05TestDirectoryPath))
+            if (!Directory.Exists(phase05TestDirectoryPath))
             {
                 Directory.CreateDirectory(phase05TestDirectoryPath);
             }
