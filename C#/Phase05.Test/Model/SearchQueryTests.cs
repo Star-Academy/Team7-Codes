@@ -67,7 +67,7 @@ namespace Phase05.Test
             AssertAllTrue(SearchQuery);
         }
 
-        
+
         [Fact]
         public void ThreeMustWord()
         {

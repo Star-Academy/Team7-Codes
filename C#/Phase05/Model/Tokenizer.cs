@@ -53,7 +53,7 @@ namespace Phase05.Model
             var normalizedWord = normalizer.Normalize(new WordToken(word));
             AddQuery<string, string> addQuery;
             addQuery = new AddQuery<string, string>(normalizedWord
-                ,new DocumentInfo(documentName));
+                , new DocumentInfo(documentName));
             index.Add(addQuery);
         }
     }
