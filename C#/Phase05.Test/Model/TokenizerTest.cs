@@ -16,8 +16,7 @@ namespace Phase05.Test.Model
             Tokenizer tokenizer = new Tokenizer(mockIIndex.Object);
             tokenizer.TokenizeDirectory("Resources/Phase05.Test");
             VerifyMethodCall(mockIIndex);
-            //CleanTestFiles();
-            Assert.True(false);
+            CleanTestFiles();
         }
 
         private void VerifyMethodCall(Mock<IIndex<string, string>> mockIIndex)
