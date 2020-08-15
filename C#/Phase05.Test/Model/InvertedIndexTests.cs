@@ -115,7 +115,7 @@ namespace Phase05.Test
                     new WordToken("celtic"),
                     new WordToken("mancity")
                 };
-                
+
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
             Assert.Equal(1, InvertedIndex.Find(searchQuery.Object).Count);
         }

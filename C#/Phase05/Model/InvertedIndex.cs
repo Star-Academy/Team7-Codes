@@ -40,7 +40,7 @@ namespace Phase05.Model
         }
 
         private void ProcessForMustTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
-        {   
+        {
             if (tokens.Count == 0)
             {
                 return;
@@ -48,11 +48,11 @@ namespace Phase05.Model
 
             try
             {
-            result.UnionWith(FindSingleToken(tokens.First()));
+                result.UnionWith(FindSingleToken(tokens.First()));
             }
             catch
             {
-                
+
             }
 
             foreach (var token in tokens)
@@ -72,7 +72,7 @@ namespace Phase05.Model
 
         private void ProcessForIncludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
         {
-            foreach(var token in tokens)
+            foreach (var token in tokens)
             {
                 try
                 {
@@ -87,7 +87,7 @@ namespace Phase05.Model
 
         private void ProcessForExcludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
         {
-            foreach(var token in tokens)
+            foreach (var token in tokens)
             {
                 try
                 {
