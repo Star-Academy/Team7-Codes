@@ -39,7 +39,7 @@ namespace Phase05.Model
             return new List<ITokenInfo<E>>(result);
         }
 
-        private void ProcessForMustTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
+        private void ProcessForMustTokens(ISet<ITokenInfo<E>> result, ISet<IToken<T>> tokens)
         {
             if (tokens.Count == 0)
             {
@@ -70,7 +70,7 @@ namespace Phase05.Model
 
         }
 
-        private void ProcessForIncludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
+        private void ProcessForIncludeTokens(ISet<ITokenInfo<E>> result, ISet<IToken<T>> tokens)
         {
             foreach (var token in tokens)
             {
@@ -85,7 +85,7 @@ namespace Phase05.Model
             }
         }
 
-        private void ProcessForExcludeTokens(HashSet<ITokenInfo<E>> result, HashSet<IToken<T>> tokens)
+        private void ProcessForExcludeTokens(ISet<ITokenInfo<E>> result, ISet<IToken<T>> tokens)
         {
             foreach (var token in tokens)
             {
@@ -106,10 +106,9 @@ namespace Phase05.Model
             {
                 return Dictionary[token];
             }
-            else
-            {
-                throw new InvalidOperationException("token not exist");
-            }
+
+            throw new InvalidOperationException("token not exist");
+
         }
     }
 }

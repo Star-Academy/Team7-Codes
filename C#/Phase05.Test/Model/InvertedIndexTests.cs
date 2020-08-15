@@ -97,7 +97,7 @@ namespace Phase05.Test
 
         }
 
-        private Mock<ISearchQuery<string>> MakeWantedMock(HashSet<IToken<string>> must, HashSet<IToken<string>> include, HashSet<IToken<string>> exclude)
+        private Mock<ISearchQuery<string>> MakeWantedMock(ISet<IToken<string>> must, ISet<IToken<string>> include, ISet<IToken<string>> exclude)
         {
             var searchQuery = new Mock<ISearchQuery<string>>();
             searchQuery.SetupProperty(x => x.MustIncludeTokens, new HashSet<IToken<string>>(must));
