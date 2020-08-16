@@ -1,6 +1,7 @@
 # Team7-Codes
 ![build](https://github.com/Star-Academy/Team7-Codes/workflows/build/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/Star-Academy/Team7-Codes/branch/master/graph/badge.svg)](https://codecov.io/gh/Star-Academy/Team7-Codes)
+[![publish](https://github.com/Star-Academy/Team7-Codes/workflows/publish/badge.svg?branch=1.0.0-beta)](https://www.nuget.org/packages/StarAcademy.Team7.StarFinder/)
 
 Star academy internship 
 
