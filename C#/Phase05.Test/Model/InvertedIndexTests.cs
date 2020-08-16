@@ -19,7 +19,7 @@ namespace Phase05.Test
             var invertedIndex = new InvertedIndex<string, string>(index);
             var addQuery = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery);
-            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
+            Assert.Single(invertedIndex.Index.GetValueOrDefault(new WordToken("barca")));
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace Phase05.Test
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery1);
             invertedIndex.Add(addQuery1);
-            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
+            Assert.Single(invertedIndex.Index.GetValueOrDefault(new WordToken("barca")));
         }
 
         [Fact]
@@ -54,8 +54,8 @@ namespace Phase05.Test
             var addQuery2 = new AddQuery<string, string>(new WordToken("atleti"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery1);
             invertedIndex.Add(addQuery2);
-            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
-            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("atleti")).Count);
+            Assert.Single(invertedIndex.Index.GetValueOrDefault(new WordToken("barca")));
+            Assert.Single(invertedIndex.Index.GetValueOrDefault(new WordToken("atleti")));
             Assert.Throws<NullReferenceException>(() => invertedIndex.Index.GetValueOrDefault(new WordToken("bayern")).Count);
         }
 
@@ -115,7 +115,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(1, invertedIndex.Find(searchQuery.Object).Count);
+            Assert.Single(invertedIndex.Find(searchQuery.Object));
         }
 
         [Fact]

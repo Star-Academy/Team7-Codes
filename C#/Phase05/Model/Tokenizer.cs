@@ -1,28 +1,24 @@
 using Phase05.Model.Interface;
 using System.IO;
+using System.Linq;
 
 namespace Phase05.Model
 {
     public class Tokenizer
     {
-        private IIndex<string, string> index;
-        private Normalizer normalizer;
+        private readonly IIndex<string, string> index;
 
-        public Tokenizer(IIndex<string, string> index, Normalizer normalizer)
+        public Tokenizer(IIndex<string, string> index)
         {
             this.index = index;
-            this.normalizer = normalizer;
         }
 
         public void TokenizeDirectory(string path)
         {
             var files = Directory.GetFiles(path);
-            foreach (var file in files)
+            foreach (var file in files.Where(x => File.Exists(x)))
             {
-                if (File.Exists(file))
-                {
                     ProcessFile(file);
-                }
             }
         }
 
@@ -50,7 +46,7 @@ namespace Phase05.Model
         private void ProcessWord(string file, string word)
         {
             var documentName = Path.GetFileName(file);
-            var normalizedWord = normalizer.Normalize(new WordToken(word));
+            var normalizedWord = new Normalizer().Normalize(new WordToken(word));
             AddQuery<string, string> addQuery;
             addQuery = new AddQuery<string, string>(normalizedWord
                 , new DocumentInfo(documentName));

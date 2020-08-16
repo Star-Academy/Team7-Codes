@@ -13,7 +13,7 @@ namespace Phase05.Test.Model
         {
             InitializeTestFiles();
             var mockIIndex = new Mock<IIndex<string, string>>();
-            Tokenizer tokenizer = new Tokenizer(mockIIndex.Object, new Normalizer());
+            Tokenizer tokenizer = new Tokenizer(mockIIndex.Object);
             tokenizer.TokenizeDirectory("Resources/Phase05.Test");
             VerifyMethodCall(mockIIndex);
             CleanTestFiles();

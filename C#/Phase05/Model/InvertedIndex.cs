@@ -9,9 +9,9 @@ namespace Phase05.Model
     {
         public Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> Index { get; }
 
-        public InvertedIndex(Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> Index)
+        public InvertedIndex(Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> index)
         {
-            this.Index = Index;
+            this.Index = index;
         }
 
         public void Add(IAddQuery<T, E> addQuery)

@@ -39,7 +39,7 @@ namespace Phase05.Model
 
         private void AddToCorrectSet(string word)
         {
-            var wordToken = new WordToken(word) as IToken<T>;
+            var wordToken = new Normalizer().Normalize(new WordToken(word)) as IToken<T>;
             switch (word.Substring(0, 1))
             {
                 case "+":
