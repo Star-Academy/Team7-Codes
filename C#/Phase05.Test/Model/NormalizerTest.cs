@@ -1,4 +1,3 @@
-using Phase05.Model.Interface;
 using Phase05.Model;
 using Xunit;
 

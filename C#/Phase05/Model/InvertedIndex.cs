@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Phase05.Model.Interface;
-using System;
+using Phase05.CustomException;
 using System.Linq;
 
 namespace Phase05.Model
@@ -31,6 +31,10 @@ namespace Phase05.Model
             ProcessForMustTokens(result, searchQuery.MustIncludeTokens);
             ProcessForIncludeTokens(result, searchQuery.IncludeTokens);
             ProcessForExcludeTokens(result, searchQuery.ExcludeTokens);
+            if (result.Count == 0)
+            {
+                throw new NoResultFoundException();
+            }
             return new List<ITokenInfo<E>>(result);
         }
 
@@ -41,42 +45,19 @@ namespace Phase05.Model
                 return;
             }
 
-            try
-            {
-                result.UnionWith(FindSingleToken(tokens.First()));
-            }
-            catch
-            {
-
-            }
+            result.UnionWith(FindSingleToken(tokens.First()));
 
             foreach (var token in tokens)
             {
-                try
-                {
-                    result.IntersectWith(FindSingleToken(token));
-                }
-                catch
-                {
-
-                }
+                result.IntersectWith(FindSingleToken(token));
             }
-
-
         }
 
         private void ProcessForIncludeTokens(ISet<ITokenInfo<E>> result, ISet<IToken<T>> tokens)
         {
             foreach (var token in tokens)
             {
-                try
-                {
-                    result.UnionWith(FindSingleToken(token));
-                }
-                catch
-                {
-
-                }
+                result.UnionWith(FindSingleToken(token));
             }
         }
 
@@ -84,14 +65,7 @@ namespace Phase05.Model
         {
             foreach (var token in tokens)
             {
-                try
-                {
-                    result.ExceptWith(FindSingleToken(token));
-                }
-                catch
-                {
-
-                }
+                result.ExceptWith(FindSingleToken(token));
             }
         }
 
@@ -101,9 +75,7 @@ namespace Phase05.Model
             {
                 return Index[token];
             }
-
-            throw new InvalidOperationException("token not exist");
-
+            return new HashSet<ITokenInfo<E>>();
         }
     }
 }

@@ -4,7 +4,7 @@ using Phase05.Model.Interface;
 using Moq;
 using System.Collections.Generic;
 using System;
-using System.Linq;
+using Phase05.CustomException;
 
 namespace Phase05.Test
 {
@@ -127,7 +127,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
+            Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
         [Fact]
@@ -142,7 +142,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
+            Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
         [Fact]
@@ -174,7 +174,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
+            Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
         [Fact]
