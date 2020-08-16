@@ -10,19 +10,13 @@ namespace Phase05.Test
 {
     public class InvertedIndexTests
     {
-        private InvertedIndex<string, string> invertedIndex;
-        private Dictionary<IToken<string>, HashSet<ITokenInfo<string>>> index;
-
-        public InvertedIndexTests()
-        {
-            index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
-            invertedIndex = new InvertedIndex<string, string>(index);
-        }
 
 
         [Fact]
         public void AddNewToken()
         {
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
             var addQuery = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery);
             Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
@@ -31,6 +25,8 @@ namespace Phase05.Test
         [Fact]
         public void AddTwoDocumentForTwoWord()
         {
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var addQuery2 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("catolania"));
             invertedIndex.Add(addQuery1);
@@ -41,6 +37,8 @@ namespace Phase05.Test
         [Fact]
         public void AddTwoSameAddQuery()
         {
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery1);
             invertedIndex.Add(addQuery1);
@@ -50,6 +48,8 @@ namespace Phase05.Test
         [Fact]
         public void AddTwoWordWithSameDocument()
         {
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var addQuery2 = new AddQuery<string, string>(new WordToken("atleti"), new DocumentInfo("spain"));
             invertedIndex.Add(addQuery1);
@@ -59,7 +59,7 @@ namespace Phase05.Test
             Assert.Throws<NullReferenceException>(() => invertedIndex.Index.GetValueOrDefault(new WordToken("bayern")).Count);
         }
 
-        private void AddSomeDataToInvertedIndex()
+        private void AddSomeDataToInvertedIndex(InvertedIndex<string, string> invertedIndex)
         {
             var barca1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var barca2 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("catolania"));
@@ -105,7 +105,9 @@ namespace Phase05.Test
         [Fact]
         public void FindTwoMustWord1()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("celtic"),
@@ -119,7 +121,9 @@ namespace Phase05.Test
         [Fact]
         public void FindTwoMustWord2()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("celtic"),
@@ -133,7 +137,9 @@ namespace Phase05.Test
         [Fact]
         public void FindthreeMustWord()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("celtic"),
@@ -148,7 +154,9 @@ namespace Phase05.Test
         [Fact]
         public void FindOneMustOneExcludeWord()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
 
             var must = new HashSet<IToken<string>>()
                 {
@@ -167,7 +175,9 @@ namespace Phase05.Test
         [Fact]
         public void FindSingleNotFoundWord()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("chelsea")
@@ -180,7 +190,9 @@ namespace Phase05.Test
         [Fact]
         public void FindOneMustWithOneIncludeNotFound()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("celtic")
@@ -198,7 +210,9 @@ namespace Phase05.Test
         [Fact]
         public void FindTwoIncludeWithThreeExclude()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var include = new HashSet<IToken<string>>()
                 {
                     new WordToken("mancity"),
@@ -219,7 +233,9 @@ namespace Phase05.Test
         [Fact]
         public void FindAllKinds()
         {
-            AddSomeDataToInvertedIndex();
+            var index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            var invertedIndex = new InvertedIndex<string, string>(index);
+            AddSomeDataToInvertedIndex(invertedIndex);
             var must = new HashSet<IToken<string>>()
                 {
                     new WordToken("liverpool"),
