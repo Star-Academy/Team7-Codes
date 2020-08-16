@@ -1,4 +1,7 @@
 # Team7-Codes
+![build](https://github.com/Star-Academy/Team7-Codes/workflows/build/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/Star-Academy/Team7-Codes/branch/master/graph/badge.svg)](https://codecov.io/gh/Star-Academy/Team7-Codes)
+
 Star academy internship 
 
 ## Table of contents
