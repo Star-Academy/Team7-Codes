@@ -7,27 +7,22 @@ namespace Phase05.Model
 {
     public class InvertedIndex<T, E> : IIndex<T, E>
     {
-        public Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> Dictionary { get; }
+        public Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> Index { get; }
 
-        public InvertedIndex(Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> dictionary)
+        public InvertedIndex(Dictionary<IToken<T>, HashSet<ITokenInfo<E>>> Index)
         {
-            this.Dictionary = dictionary;
+            this.Index = Index;
         }
 
         public void Add(IAddQuery<T, E> addQuery)
         {
-            if (Dictionary.ContainsKey(addQuery.Token))
+            if (!Index.TryGetValue(addQuery.Token, out var tokensInfo))
             {
-                Dictionary[addQuery.Token].Add(addQuery.TokenInfo);
+                tokensInfo = new HashSet<ITokenInfo<E>>();
+                Index[addQuery.Token] = tokensInfo;
             }
-            else
-            {
-                Dictionary.Add(
-                    addQuery.Token,
-                    new HashSet<ITokenInfo<E>>() {
-                        addQuery.TokenInfo
-                    });
-            }
+
+            tokensInfo.Add(addQuery.TokenInfo);
         }
 
         public List<ITokenInfo<E>> Find(ISearchQuery<T> searchQuery)
@@ -102,9 +97,9 @@ namespace Phase05.Model
 
         private HashSet<ITokenInfo<E>> FindSingleToken(IToken<T> token)
         {
-            if (Dictionary.ContainsKey(token))
+            if (Index.ContainsKey(token))
             {
-                return Dictionary[token];
+                return Index[token];
             }
 
             throw new InvalidOperationException("token not exist");

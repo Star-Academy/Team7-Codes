@@ -8,28 +8,24 @@ using System.Linq;
 
 namespace Phase05.Test
 {
-    public class InvertedIndexTests : IDisposable
+    public class InvertedIndexTests
     {
-        private InvertedIndex<string, string> InvertedIndex;
-        private Dictionary<IToken<string>, HashSet<ITokenInfo<string>>> Dictionary;
+        private InvertedIndex<string, string> invertedIndex;
+        private Dictionary<IToken<string>, HashSet<ITokenInfo<string>>> index;
 
         public InvertedIndexTests()
         {
-            Dictionary = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
-            InvertedIndex = new InvertedIndex<string, string>(Dictionary);
+            index = new Dictionary<IToken<string>, HashSet<ITokenInfo<string>>>();
+            invertedIndex = new InvertedIndex<string, string>(index);
         }
 
-        public void Dispose()
-        {
-
-        }
 
         [Fact]
         public void AddNewToken()
         {
             var addQuery = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
-            InvertedIndex.Add(addQuery);
-            Assert.Equal(1, InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("barca")).Count);
+            invertedIndex.Add(addQuery);
+            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
         }
 
         [Fact]
@@ -37,18 +33,18 @@ namespace Phase05.Test
         {
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var addQuery2 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("catolania"));
-            InvertedIndex.Add(addQuery1);
-            InvertedIndex.Add(addQuery2);
-            Assert.Equal(2, InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("barca")).Count);
+            invertedIndex.Add(addQuery1);
+            invertedIndex.Add(addQuery2);
+            Assert.Equal(2, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
         }
 
         [Fact]
         public void AddTwoSameAddQuery()
         {
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
-            InvertedIndex.Add(addQuery1);
-            InvertedIndex.Add(addQuery1);
-            Assert.Equal(1, InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("barca")).Count);
+            invertedIndex.Add(addQuery1);
+            invertedIndex.Add(addQuery1);
+            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
         }
 
         [Fact]
@@ -56,44 +52,44 @@ namespace Phase05.Test
         {
             var addQuery1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var addQuery2 = new AddQuery<string, string>(new WordToken("atleti"), new DocumentInfo("spain"));
-            InvertedIndex.Add(addQuery1);
-            InvertedIndex.Add(addQuery2);
-            Assert.Equal(1, InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("barca")).Count);
-            Assert.Equal(1, InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("atleti")).Count);
-            Assert.Throws<NullReferenceException>(() => InvertedIndex.Dictionary.GetValueOrDefault(new WordToken("bayern")).Count);
+            invertedIndex.Add(addQuery1);
+            invertedIndex.Add(addQuery2);
+            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("barca")).Count);
+            Assert.Equal(1, invertedIndex.Index.GetValueOrDefault(new WordToken("atleti")).Count);
+            Assert.Throws<NullReferenceException>(() => invertedIndex.Index.GetValueOrDefault(new WordToken("bayern")).Count);
         }
 
         private void AddSomeDataToInvertedIndex()
         {
             var barca1 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("spain"));
             var barca2 = new AddQuery<string, string>(new WordToken("barca"), new DocumentInfo("catolania"));
-            InvertedIndex.Add(barca1);
-            InvertedIndex.Add(barca2);
+            invertedIndex.Add(barca1);
+            invertedIndex.Add(barca2);
 
             var atleti1 = new AddQuery<string, string>(new WordToken("atleti"), new DocumentInfo("spain"));
-            InvertedIndex.Add(atleti1);
+            invertedIndex.Add(atleti1);
 
             var manCity1 = new AddQuery<string, string>(new WordToken("mancity"), new DocumentInfo("manchester"));
             var manCity2 = new AddQuery<string, string>(new WordToken("mancity"), new DocumentInfo("england"));
             var manCity3 = new AddQuery<string, string>(new WordToken("mancity"), new DocumentInfo("uk"));
-            InvertedIndex.Add(manCity1);
-            InvertedIndex.Add(manCity2);
-            InvertedIndex.Add(manCity3);
+            invertedIndex.Add(manCity1);
+            invertedIndex.Add(manCity2);
+            invertedIndex.Add(manCity3);
 
             var manUnited1 = new AddQuery<string, string>(new WordToken("manunited"), new DocumentInfo("manchester"));
-            InvertedIndex.Add(manUnited1);
+            invertedIndex.Add(manUnited1);
 
             var arsenal1 = new AddQuery<string, string>(new WordToken("arsenal"), new DocumentInfo("london"));
             var arsenal2 = new AddQuery<string, string>(new WordToken("arsenal"), new DocumentInfo("england"));
-            InvertedIndex.Add(arsenal1);
-            InvertedIndex.Add(arsenal2);
+            invertedIndex.Add(arsenal1);
+            invertedIndex.Add(arsenal2);
 
             var celtic1 = new AddQuery<string, string>(new WordToken("celtic"), new DocumentInfo("glasgow"));
             var celtic2 = new AddQuery<string, string>(new WordToken("celtic"), new DocumentInfo("scotland"));
             var celtic3 = new AddQuery<string, string>(new WordToken("celtic"), new DocumentInfo("uk"));
-            InvertedIndex.Add(celtic1);
-            InvertedIndex.Add(celtic2);
-            InvertedIndex.Add(celtic3);
+            invertedIndex.Add(celtic1);
+            invertedIndex.Add(celtic2);
+            invertedIndex.Add(celtic3);
 
         }
 
@@ -117,7 +113,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(1, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(1, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -131,7 +127,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -146,7 +142,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -165,7 +161,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), exclude);
-            Assert.Equal(2, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -178,7 +174,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
-            Assert.Equal(0, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(0, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -196,7 +192,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, include, new HashSet<IToken<string>>());
-            Assert.Equal(3, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(3, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
@@ -217,11 +213,11 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(new HashSet<IToken<string>>(), include, exclude);
-            Assert.Equal(2, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
         [Fact]
-        public void FindAllKindes()
+        public void FindAllKinds()
         {
             AddSomeDataToInvertedIndex();
             var must = new HashSet<IToken<string>>()
@@ -243,7 +239,7 @@ namespace Phase05.Test
                 };
 
             var searchQuery = MakeWantedMock(must, include, exclude);
-            Assert.Equal(2, InvertedIndex.Find(searchQuery.Object).Count);
+            Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
 

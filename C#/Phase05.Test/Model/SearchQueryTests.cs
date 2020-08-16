@@ -5,24 +5,19 @@ using System;
 
 namespace Phase05.Test
 {
-    public class SearchQueryTests : IDisposable
+    public class SearchQueryTests
     {
 
-        private SearchQuery<string> SearchQuery;
-        private HashSet<WordToken> MustInclude;
-        private HashSet<WordToken> Include;
-        private HashSet<WordToken> Exclude;
+        private SearchQuery<string> searchQuery;
+        private HashSet<WordToken> mustInclude;
+        private HashSet<WordToken> include;
+        private HashSet<WordToken> exclude;
         public SearchQueryTests()
         {
-            SearchQuery = new SearchQuery<string>();
-            MustInclude = new HashSet<WordToken>();
-            Include = new HashSet<WordToken>();
-            Exclude = new HashSet<WordToken>();
-
-        }
-
-        public void Dispose()
-        {
+            searchQuery = new SearchQuery<string>();
+            mustInclude = new HashSet<WordToken>();
+            include = new HashSet<WordToken>();
+            exclude = new HashSet<WordToken>();
 
         }
 
@@ -30,27 +25,27 @@ namespace Phase05.Test
         public void OneMustWord()
         {
             var wordToken = new WordToken("ali");
-            MustInclude.Add(wordToken);
-            SearchQuery.ParseString("ali");
-            AssertAllTrue(SearchQuery);
+            mustInclude.Add(wordToken);
+            searchQuery.ParseString("ali");
+            AssertAllTrue(searchQuery);
         }
 
         [Fact]
         public void OneIncludeWord()
         {
             var wordToken = new WordToken("ali");
-            Include.Add(wordToken);
-            SearchQuery.ParseString("+ali");
-            AssertAllTrue(SearchQuery);
+            include.Add(wordToken);
+            searchQuery.ParseString("+ali");
+            AssertAllTrue(searchQuery);
         }
 
         [Fact]
         public void OneExcludeeWord()
         {
             var wordToken = new WordToken("ali");
-            Exclude.Add(wordToken);
-            SearchQuery.ParseString("-ali");
-            AssertAllTrue(SearchQuery);
+            exclude.Add(wordToken);
+            searchQuery.ParseString("-ali");
+            AssertAllTrue(searchQuery);
         }
 
 
@@ -60,11 +55,11 @@ namespace Phase05.Test
             var wordToken1 = new WordToken("ali");
             var wordToken2 = new WordToken("hassan");
             var wordToken3 = new WordToken("parsa");
-            Exclude.Add(wordToken1);
-            Include.Add(wordToken2);
-            MustInclude.Add(wordToken3);
-            SearchQuery.ParseString("-ali +hassan parsa");
-            AssertAllTrue(SearchQuery);
+            exclude.Add(wordToken1);
+            include.Add(wordToken2);
+            mustInclude.Add(wordToken3);
+            searchQuery.ParseString("-ali +hassan parsa");
+            AssertAllTrue(searchQuery);
         }
 
 
@@ -74,19 +69,19 @@ namespace Phase05.Test
             var wordToken1 = new WordToken("ali");
             var wordToken2 = new WordToken("hassan");
             var wordToken3 = new WordToken("parsa");
-            MustInclude.Add(wordToken1);
-            MustInclude.Add(wordToken2);
-            MustInclude.Add(wordToken3);
-            SearchQuery.ParseString("ali hassan parsa");
-            AssertAllTrue(SearchQuery);
+            mustInclude.Add(wordToken1);
+            mustInclude.Add(wordToken2);
+            mustInclude.Add(wordToken3);
+            searchQuery.ParseString("ali hassan parsa");
+            AssertAllTrue(searchQuery);
         }
 
 
         private void AssertAllTrue(SearchQuery<string> searchQuery)
         {
-            Assert.Equal(SearchQuery.MustIncludeTokens.Count, MustInclude.Count);
-            Assert.Equal(SearchQuery.IncludeTokens.Count, Include.Count);
-            Assert.Equal(SearchQuery.ExcludeTokens.Count, Exclude.Count);
+            Assert.Equal(this.searchQuery.MustIncludeTokens.Count, mustInclude.Count);
+            Assert.Equal(this.searchQuery.IncludeTokens.Count, include.Count);
+            Assert.Equal(this.searchQuery.ExcludeTokens.Count, exclude.Count);
         }
 
 
