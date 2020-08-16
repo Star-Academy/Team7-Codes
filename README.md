@@ -1,5 +1,6 @@
 # Team7-Codes
 Star academy internship 
+![build](https://github.com/Star-Academy/Team7-Codes/workflows/build/badge.svg?branch=master)
 
 ## Table of contents
 - [Phases](#Phases)
