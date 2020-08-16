@@ -19,12 +19,12 @@ jobs:
 
     - name: Install dependencies
       run: dotnet restore
-      working-directory: C#/Team7-Codes.sln
+      working-directory: C#/
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: C#/Team7-Codes.sln
+      working-directory: C#/
 
     - name: Test
       run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
-      working-directory: C#/Team7-Codes.sln
+      working-directory: C#/
