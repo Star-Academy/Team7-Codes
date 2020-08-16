@@ -93,7 +93,7 @@ namespace Phase05.Test
 
         }
 
-        private Mock<ISearchQuery<string>> MakeWantedMock(ISet<IToken<string>> must, ISet<IToken<string>> include, ISet<IToken<string>> exclude)
+        private Mock<ISearchQuery<string>> createMockSearchQuery(ISet<IToken<string>> must, ISet<IToken<string>> include, ISet<IToken<string>> exclude)
         {
             var searchQuery = new Mock<ISearchQuery<string>>();
             searchQuery.SetupProperty(x => x.MustIncludeTokens, new HashSet<IToken<string>>(must));
@@ -114,7 +114,7 @@ namespace Phase05.Test
                     new WordToken("mancity")
                 };
 
-            var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
+            var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
             Assert.Equal(1, invertedIndex.Find(searchQuery.Object).Count);
         }
 
@@ -130,7 +130,7 @@ namespace Phase05.Test
                     new WordToken("barca")
                 };
 
-            var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
+            var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
             Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
@@ -147,7 +147,7 @@ namespace Phase05.Test
                     new WordToken("arsenal")
                 };
 
-            var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
+            var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
             Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
@@ -168,7 +168,7 @@ namespace Phase05.Test
                     new WordToken("mancity")
                 };
 
-            var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), exclude);
+            var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), exclude);
             Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
@@ -183,7 +183,7 @@ namespace Phase05.Test
                     new WordToken("chelsea")
                 };
 
-            var searchQuery = MakeWantedMock(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
+            var searchQuery = createMockSearchQuery(must, new HashSet<IToken<string>>(), new HashSet<IToken<string>>());
             Assert.Throws<NoResultFoundException>(() => invertedIndex.Find(searchQuery.Object));
         }
 
@@ -203,7 +203,7 @@ namespace Phase05.Test
                     new WordToken("chelsea")
                 };
 
-            var searchQuery = MakeWantedMock(must, include, new HashSet<IToken<string>>());
+            var searchQuery = createMockSearchQuery(must, include, new HashSet<IToken<string>>());
             Assert.Equal(3, invertedIndex.Find(searchQuery.Object).Count);
         }
 
@@ -226,7 +226,7 @@ namespace Phase05.Test
                     new WordToken("atleti")
                 };
 
-            var searchQuery = MakeWantedMock(new HashSet<IToken<string>>(), include, exclude);
+            var searchQuery = createMockSearchQuery(new HashSet<IToken<string>>(), include, exclude);
             Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
@@ -254,7 +254,7 @@ namespace Phase05.Test
                     new WordToken("atleti")
                 };
 
-            var searchQuery = MakeWantedMock(must, include, exclude);
+            var searchQuery = createMockSearchQuery(must, include, exclude);
             Assert.Equal(2, invertedIndex.Find(searchQuery.Object).Count);
         }
 
