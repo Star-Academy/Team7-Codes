@@ -16,6 +16,7 @@ Star academy internship
 - [Phase04](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase04-CSharp/Phase04-CSharp.md)
 - [Phase05](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase05-TDD/Phase05-TDD.md)
 - [Phase06](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase06-CICD/Phase06-CICD.md)
+- [Phase07](https://github.com/Star-Academy/codestar-internship/blob/master/Projects/Phase07-Elasticsearch/Phase07-Elasticsearch.md)
 
 ## Contributors
 - Parsa Mohammadian
