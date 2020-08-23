@@ -65,10 +65,7 @@ namespace ElasticFinderConsoleApp
                         .Field(d => d.Content)
                         .Query(word)
             )));
-            Console.WriteLine(response.Documents.Count);       
-            var tmp = response.Documents.ToHashSet<Document>();
-            Console.WriteLine(tmp.First().Name);
-            return tmp;
+            return response.Documents.ToHashSet<Document>();
         }
     }
 }
