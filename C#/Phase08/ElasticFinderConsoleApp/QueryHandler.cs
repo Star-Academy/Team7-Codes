@@ -5,9 +5,11 @@ namespace ElasticFinderConsoleApp
 {
     public class QueryHandler
     {
-        public IEnumerator<Document> Find(SearchQuery query)
+        public List<Document> Find(SearchQuery query)
         {
-
+            var result = new List<Document>();
+            
+            return result;
         }
     }
 }
