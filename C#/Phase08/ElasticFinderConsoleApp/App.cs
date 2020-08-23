@@ -13,25 +13,30 @@ namespace ElasticFinderConsoleApp
 
         public void Run()
         {
-            var path = GetPath();
+            //var path = GetPath();
             
-            var documentIndexer = new DocumentIndexer("my-index");
-            documentIndexer.IndexDocuments(new FileReader(path));
-            
+            var indexName = "my-index1";
 
+            //var documentIndexer = new DocumentIndexer(indexName);
+            //documentIndexer.IndexDocuments(new FileReader(path));
+            
+            CommandHandler(new QueryHandler(indexName));
         }
 
-        // private void CommandHandler(IIndex<string, string> invertedIndex)
-        // {
-        //     string command;
-        //     while (!(command = GetQuery()).Equals("exit"))
-        //     {
-        //         var searchQuery = new SearchQuery<string>(command);
-        //         var result = invertedIndex.Find(searchQuery);
-        //         commandReader.SendResponse(result.Count + " results found :");
-        //         result.ForEach(x => commandReader.SendResponse("\t" + x.Content));
-        //     }
-        // }
+        private void CommandHandler(QueryHandler queryHandler)
+        {
+            string command;
+            while (!(command = GetQuery()).Equals("exit"))
+            {
+                var searchQuery = new SearchQuery(command);
+                var result = queryHandler.Find(searchQuery);
+                commandReader.SendResponse(result.Count + " results found :");
+                foreach (var item in result)
+                {
+                    commandReader.SendResponse("\t" + item.Name);
+                }
+            }
+        }
 
         private string GetPath()
         {
