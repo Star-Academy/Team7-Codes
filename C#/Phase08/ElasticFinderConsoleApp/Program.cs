@@ -9,7 +9,7 @@ namespace ElasticFinderConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-        
+            
         }
     }
 }
