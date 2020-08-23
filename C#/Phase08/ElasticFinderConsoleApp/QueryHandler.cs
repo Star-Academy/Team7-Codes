@@ -65,7 +65,7 @@ namespace ElasticFinderConsoleApp
                         .Field(d => d.Content)
                         .Query(word)
             )));
-            await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponse(response);
+            await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponseAndLogConsole(response);
             return (await response).Documents.ToHashSet<Document>();
         }
     }

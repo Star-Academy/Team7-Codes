@@ -23,20 +23,20 @@ namespace ElasticFinderConsoleApp
                     .Text(t => t
                         .Name(n => n.Name)))));
 
-            await ElasticResponseValidator<CreateIndexResponse>.ValidateResponse(responseTask);
+            await ElasticResponseValidator<CreateIndexResponse>.ValidateResponseAndLogConsole(responseTask);
         }
 
         public async Task DeleteIndex()
         {
             var responseTask = Client.Indices.DeleteAsync(IndexName);
-            await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponse(responseTask);
+            await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponseAndLogConsole(responseTask);
         }
 
         public async Task IndexDocuments(FileReader fileReader)
         {
             var bulkDescriptor = AddToBulkDescriptor(fileReader);
             var responseTask = Client.BulkAsync(bulkDescriptor);
-            await ElasticResponseValidator<BulkResponse>.ValidateResponse(responseTask);
+            await ElasticResponseValidator<BulkResponse>.ValidateResponseAndLogConsole(responseTask);
         }
 
         private BulkDescriptor AddToBulkDescriptor(FileReader fileReader)

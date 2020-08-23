@@ -1,12 +1,30 @@
 using Nest;
 using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace ElasticFinderConsoleApp
 {
     public class ElasticResponseValidator<T> where T : IResponse
     {
+        public static async Task ValidateResponseAndLogConsole(Task<T> responseTask)
+        {
+            try
+            {
+                await ValidateResponse(responseTask);
+            }   
+            catch (Exception e)
+            {
+                if (e is CustomException.RequestNotSentException 
+                        || e is CustomException.ElasticClientErrorException
+                        || e is CustomException.ElasticServerErrorException
+                        || e is CustomException.ServerErrorException)
+                {
+                    Console.WriteLine(e.Message);
+                    return;
+                }
+                throw;
+            }
+        }
         public static async Task ValidateResponse(Task<T> responseTask)
         {
             IResponse response;
