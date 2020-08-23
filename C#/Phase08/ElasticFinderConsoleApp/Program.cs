@@ -1,15 +1,10 @@
-﻿using System;
-using Nest;
-
-
-namespace ElasticFinderConsoleApp
+﻿namespace ElasticFinderConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
+            new App(new TerminalCommandReader()).Run();
         }
     }
 }
