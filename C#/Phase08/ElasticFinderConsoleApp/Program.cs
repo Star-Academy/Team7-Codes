@@ -1,7 +1,6 @@
 ﻿using System;
 using Nest;
 
-
 namespace ElasticFinderConsoleApp
 {
     class Program
@@ -9,7 +8,7 @@ namespace ElasticFinderConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-        
+            
         }
     }
 }
