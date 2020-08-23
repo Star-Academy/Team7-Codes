@@ -6,6 +6,7 @@ namespace ElasticFinderConsoleApp
     public class App
     {
         private readonly ICommandReader commandReader;
+        private const string IndexName = "inverte_index_using_elasticsearch";
 
         public App(ICommandReader commandReader)
         {
@@ -16,14 +17,12 @@ namespace ElasticFinderConsoleApp
         {
             var path = GetPath();
             
-            var indexName = "my-index4";
-
-            var documentIndexer = new DocumentIndexer(indexName);
+            var documentIndexer = new DocumentIndexer(IndexName);
             await documentIndexer.DeleteIndex();
             await documentIndexer.CreateIndex();
             await documentIndexer.IndexDocuments(new FileReader(path));
             
-            await CommandHandler(new QueryHandler(indexName));
+            await CommandHandler(new QueryHandler(IndexName));
         }
 
         private async Task CommandHandler(QueryHandler queryHandler)

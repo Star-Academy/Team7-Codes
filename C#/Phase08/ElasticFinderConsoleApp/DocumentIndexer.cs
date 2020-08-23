@@ -28,8 +28,13 @@ namespace ElasticFinderConsoleApp
 
         public async Task DeleteIndex()
         {
-            var responseTask = Client.Indices.DeleteAsync(IndexName);
-            await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponseAndLogConsole(responseTask);
+            var responseExist = Client.Indices.ExistsAsync(IndexName);
+            await ElasticResponseValidator<ExistsResponse>.ValidateResponseAndLogConsole(responseExist);
+            if(responseExist.Result.Exists)
+            {
+                var responseTask = Client.Indices.DeleteAsync(IndexName);
+                await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponseAndLogConsole(responseTask);
+            }
         }
 
         public async Task IndexDocuments(FileReader fileReader)
