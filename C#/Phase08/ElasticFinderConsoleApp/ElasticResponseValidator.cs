@@ -1,12 +1,13 @@
 using Nest;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ElasticFinderConsoleApp
 {
-    public class ElasticResponseValidator
+    public class ElasticResponseValidator<T> where T : IResponse
     {
-        public static async Task ValidateResponse(Task<IResponse> responseTask)
+        public static async Task ValidateResponse(Task<T> responseTask)
         {
             IResponse response;
             try
@@ -25,7 +26,7 @@ namespace ElasticFinderConsoleApp
 
         private static void CheckServerError(IResponse response)
         {
-            var error = response.ServerError.Error;
+            var error = response.ServerError;
             if (error != null)
             {
                 throw new CustomException.ServerErrorException(error.ToString());

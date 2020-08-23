@@ -1,13 +1,13 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Nest;
 
 namespace ElasticFinderConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            new App(new TerminalCommandReader()).Run();
+            await new App(new TerminalCommandReader()).Run();
         }
     }
 }

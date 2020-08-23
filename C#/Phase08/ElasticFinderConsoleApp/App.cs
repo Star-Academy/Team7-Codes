@@ -1,4 +1,5 @@
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ElasticFinderConsoleApp
 {
@@ -11,25 +12,27 @@ namespace ElasticFinderConsoleApp
             this.commandReader = commandReader;
         }
 
-        public void Run()
+        public async Task Run()
         {
-            //var path = GetPath();
+            var path = GetPath();
             
-            var indexName = "my-index1";
+            var indexName = "my-index4";
 
-            //var documentIndexer = new DocumentIndexer(indexName);
-            //documentIndexer.IndexDocuments(new FileReader(path));
+            var documentIndexer = new DocumentIndexer(indexName);
+            await documentIndexer.DeleteIndex();
+            await documentIndexer.CreateIndex();
+            await documentIndexer.IndexDocuments(new FileReader(path));
             
-            CommandHandler(new QueryHandler(indexName));
+            await CommandHandler(new QueryHandler(indexName));
         }
 
-        private void CommandHandler(QueryHandler queryHandler)
+        private async Task CommandHandler(QueryHandler queryHandler)
         {
             string command;
             while (!(command = GetQuery()).Equals("exit"))
             {
                 var searchQuery = new SearchQuery(command);
-                var result = queryHandler.Find(searchQuery);
+                var result = await queryHandler.Find(searchQuery);
                 commandReader.SendResponse(result.Count + " results found :");
                 foreach (var item in result)
                 {

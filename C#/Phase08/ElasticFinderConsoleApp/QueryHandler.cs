@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Nest;
 using System.Linq;
-using System;
+using System.Threading.Tasks;
 
 namespace ElasticFinderConsoleApp
 {
@@ -16,56 +16,57 @@ namespace ElasticFinderConsoleApp
             this.indexName = indexName;
         }
 
-        public HashSet<Document> Find(SearchQuery query)
+        public async Task<HashSet<Document>> Find(SearchQuery query)
         {
             var result = new HashSet<Document>();
-            ProcessMustInclude(result, query.MustIncludeTokens);
-            ProcessInclude(result, query.IncludeTokens);
-            ProcessExclude(result, query.ExcludeTokens);
+            await ProcessMustInclude(result, query.MustIncludeTokens);
+            await ProcessInclude(result, query.IncludeTokens);
+            await ProcessExclude(result, query.ExcludeTokens);
             return result;
         }
 
-        private void ProcessMustInclude(ISet<Document> result, ISet<string> words)
+        private async Task ProcessMustInclude(ISet<Document> result, ISet<string> words)
         {
             if (words.Count == 0)
             {
                 return;
             }
 
-            result.UnionWith(FindSingleToken(words.First()));
+            result.UnionWith(await FindSingleToken(words.First()));
 
             foreach (var word in words)
             {
-                result.IntersectWith(FindSingleToken(word));
+                result.IntersectWith(await FindSingleToken(word));
             }
         }
 
-        private void ProcessInclude(ISet<Document> result, ISet<string> words)
+        private async Task ProcessInclude(ISet<Document> result, ISet<string> words)
         {
             foreach (var word in words)
             {
-                result.UnionWith(FindSingleToken(word));
+                result.UnionWith(await FindSingleToken(word));
             }
         }
 
-        private void ProcessExclude(ISet<Document> result, ISet<string> words)
+        private async Task ProcessExclude(ISet<Document> result, ISet<string> words)
         {
             foreach (var word in words)
             {
-                result.ExceptWith(FindSingleToken(word));
+                result.ExceptWith(await FindSingleToken(word));
             }
         }
 
-        private HashSet<Document> FindSingleToken(string word)
+        private async Task<HashSet<Document>> FindSingleToken(string word)
         {
-            var response = client.Search<Document>(s => s
+            var response = client.SearchAsync<Document>(s => s
                 .Index(indexName)
                 .Query(q => q
                     .Match(m => m
                         .Field(d => d.Content)
                         .Query(word)
             )));
-            return response.Documents.ToHashSet<Document>();
+            await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponse(response);
+            return (await response).Documents.ToHashSet<Document>();
         }
     }
 }
