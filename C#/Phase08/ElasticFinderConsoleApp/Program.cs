@@ -7,8 +7,7 @@ namespace ElasticFinderConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
+            new App(new TerminalCommandReader()).Run();
         }
     }
 }

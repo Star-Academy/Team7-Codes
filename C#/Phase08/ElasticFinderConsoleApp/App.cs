@@ -15,6 +15,10 @@ namespace ElasticFinderConsoleApp
         {
             var path = GetPath();
             
+            var documentIndexer = new DocumentIndexer("my-index");
+            documentIndexer.IndexDocuments(new FileReader(path));
+            
+
         }
 
         // private void CommandHandler(IIndex<string, string> invertedIndex)
