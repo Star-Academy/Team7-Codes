@@ -17,11 +17,11 @@ namespace ElasticFinderConsoleApp.View
 
         public async Task Run()
         {
-            var path = GetPath();
-            var documentIndexer = new DocumentIndexer(IndexName);
-            await documentIndexer.DeleteIndex();
-            await documentIndexer.CreateIndex();
-            await documentIndexer.IndexDocuments(new FileReader(path));
+            // var path = GetPath();
+            // var documentIndexer = new DocumentIndexer(IndexName);
+            // await documentIndexer.DeleteIndex();
+            // await documentIndexer.CreateIndex();
+            // await documentIndexer.IndexDocuments(new FileReader(path));
 
             await CommandHandler(new QueryHandler(IndexName));
         }

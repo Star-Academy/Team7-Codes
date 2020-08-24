@@ -29,10 +29,13 @@ namespace ElasticFinderConsoleApp.Model
 
         public void ParseString(string query)
         {
-            var words = query.Split(' ');
-            foreach (var word in words)
+            var words = query.Trim().Split(' ');
+            if (words[0].Length > 0)
             {
-                AddToCorrectSet(word);
+                foreach (var word in words)
+                {
+                    AddToCorrectSet(word);
+                }
             }
         }
 
