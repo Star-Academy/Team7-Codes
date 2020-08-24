@@ -17,11 +17,11 @@ namespace ElasticFinderConsoleApp.View
 
         public async Task Run()
         {
-            // var path = GetPath();
-            // var documentIndexer = new DocumentIndexer(IndexName);
-            // await documentIndexer.DeleteIndex();
-            // await documentIndexer.CreateIndex();
-            // await documentIndexer.IndexDocuments(new FileReader(path));
+            var path = GetPath();
+            var documentIndexer = new DocumentIndexer(IndexName);
+            await documentIndexer.DeleteIndex();
+            await documentIndexer.CreateIndex();
+            await documentIndexer.IndexDocuments(new FileReader(path));
 
             await CommandHandler(new QueryHandler(IndexName));
         }
@@ -32,6 +32,8 @@ namespace ElasticFinderConsoleApp.View
             while (!(command = GetQuery()).Equals("exit"))
             {
                 var searchQuery = new SearchQuery(command);
+                if (command.Trim().Length == 0)
+                    continue;
                 var result = await queryHandler.Find(searchQuery);
                 commandReader.SendResponse(result.Count + " results found :");
                 foreach (var item in result)

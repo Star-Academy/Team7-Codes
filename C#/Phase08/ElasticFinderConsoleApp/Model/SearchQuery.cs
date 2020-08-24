@@ -5,9 +5,9 @@ namespace ElasticFinderConsoleApp.Model
     public class SearchQuery
     {
 
-        public HashSet<string> MustIncludeTokens { get; set; }
-        public HashSet<string> IncludeTokens { get; set; }
-        public HashSet<string> ExcludeTokens { get; set; }
+        public HashSet<string> MustIncludeWords { get; set; }
+        public HashSet<string> IncludeWords { get; set; }
+        public HashSet<string> ExcludeWords { get; set; }
 
         public SearchQuery()
         {
@@ -22,9 +22,9 @@ namespace ElasticFinderConsoleApp.Model
 
         private void Initialize()
         {
-            MustIncludeTokens = new HashSet<string>();
-            IncludeTokens = new HashSet<string>();
-            ExcludeTokens = new HashSet<string>();
+            MustIncludeWords = new HashSet<string>();
+            IncludeWords = new HashSet<string>();
+            ExcludeWords = new HashSet<string>();
         }
 
         public void ParseString(string query)
@@ -44,13 +44,13 @@ namespace ElasticFinderConsoleApp.Model
             switch (word.Substring(0, 1))
             {
                 case "+":
-                    IncludeTokens.Add(word);
+                    IncludeWords.Add(word);
                     break;
                 case "-":
-                    ExcludeTokens.Add(word);
+                    ExcludeWords.Add(word);
                     break;
                 default:
-                    MustIncludeTokens.Add(word);
+                    MustIncludeWords.Add(word);
                     break;
             }
         }
