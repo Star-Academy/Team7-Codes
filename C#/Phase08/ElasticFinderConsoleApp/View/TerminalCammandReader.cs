@@ -1,6 +1,6 @@
 using System;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.View
 {
     public class TerminalCommandReader : ICommandReader
     {

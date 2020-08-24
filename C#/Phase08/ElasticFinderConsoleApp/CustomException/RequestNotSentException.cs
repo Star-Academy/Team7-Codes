@@ -9,7 +9,5 @@ namespace ElasticFinderConsoleApp.CustomException
         public RequestNotSentException(string message) : base(message)
         {
         }
-
-        
     }
 }

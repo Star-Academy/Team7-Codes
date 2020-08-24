@@ -1,4 +1,4 @@
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.View
 {
     public interface ICommandReader
     {

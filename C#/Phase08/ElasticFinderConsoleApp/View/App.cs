@@ -1,7 +1,9 @@
 using System.IO;
 using System.Threading.Tasks;
+using ElasticFinderConsoleApp.ElasticCumminucation;
+using ElasticFinderConsoleApp.Model;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.View
 {
     public class App
     {
@@ -16,12 +18,11 @@ namespace ElasticFinderConsoleApp
         public async Task Run()
         {
             var path = GetPath();
-            
             var documentIndexer = new DocumentIndexer(IndexName);
             await documentIndexer.DeleteIndex();
             await documentIndexer.CreateIndex();
             await documentIndexer.IndexDocuments(new FileReader(path));
-            
+
             await CommandHandler(new QueryHandler(IndexName));
         }
 

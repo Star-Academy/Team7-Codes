@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using Nest;
 using System.Linq;
 using System.Threading.Tasks;
+using ElasticFinderConsoleApp.Model;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.ElasticCumminucation
 {
     public class QueryHandler
     {
@@ -12,7 +13,7 @@ namespace ElasticFinderConsoleApp
 
         public QueryHandler(string indexName)
         {
-            this.client = ElasticClientFactory.client;
+            this.client = ElasticClientFactory.Client;
             this.indexName = indexName;
         }
 

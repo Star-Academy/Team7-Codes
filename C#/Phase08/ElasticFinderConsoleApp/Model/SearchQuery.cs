@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.Model
 {
     public class SearchQuery
     {
@@ -29,13 +29,10 @@ namespace ElasticFinderConsoleApp
 
         public void ParseString(string query)
         {
-            var words = query.Trim().Split(' ');
-            if(words[0].Length > 0)
+            var words = query.Split(' ');
+            foreach (var word in words)
             {
-                foreach (var word in words)
-                {
-                    AddToCorrectSet(word);
-                }
+                AddToCorrectSet(word);
             }
         }
 

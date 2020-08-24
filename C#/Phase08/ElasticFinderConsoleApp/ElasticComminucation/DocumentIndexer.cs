@@ -1,12 +1,13 @@
 using Nest;
+using ElasticFinderConsoleApp.Model;
 using System.Threading.Tasks;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.ElasticCumminucation
 {
     public class DocumentIndexer
     {
-        public string IndexName {get; set;}
-        private IElasticClient Client = ElasticClientFactory.client;
+        public string IndexName { get; set; }
+        private IElasticClient Client = ElasticClientFactory.Client;
 
         public DocumentIndexer(string indexName)
         {
@@ -30,7 +31,7 @@ namespace ElasticFinderConsoleApp
         {
             var responseExist = Client.Indices.ExistsAsync(IndexName);
             await ElasticResponseValidator<ExistsResponse>.ValidateResponseAndLogConsole(responseExist);
-            if(responseExist.Result.Exists)
+            if (responseExist.Result.Exists)
             {
                 var responseTask = Client.Indices.DeleteAsync(IndexName);
                 await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponseAndLogConsole(responseTask);

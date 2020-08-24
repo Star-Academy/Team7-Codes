@@ -2,7 +2,7 @@ using Nest;
 using System;
 using System.Threading.Tasks;
 
-namespace ElasticFinderConsoleApp
+namespace ElasticFinderConsoleApp.ElasticCumminucation
 {
     public class ElasticResponseValidator<T> where T : IResponse
     {
@@ -11,10 +11,10 @@ namespace ElasticFinderConsoleApp
             try
             {
                 await ValidateResponse(responseTask);
-            }   
+            }
             catch (Exception e)
             {
-                if (e is CustomException.RequestNotSentException 
+                if (e is CustomException.RequestNotSentException
                         || e is CustomException.ElasticClientErrorException
                         || e is CustomException.ElasticServerErrorException
                         || e is CustomException.ServerErrorException)

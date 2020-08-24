@@ -1,6 +1,7 @@
 using Nest;
 using System.IO;
 using System.Linq;
+using ElasticFinderConsoleApp.Model;
 
 namespace ElasticFinderConsoleApp
 {
