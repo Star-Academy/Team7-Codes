@@ -20,9 +20,10 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
         public async Task<HashSet<Document>> Find(SearchQuery query)
         {
             var result = new HashSet<Document>();
-            await ProcessMustInclude(result, query.MustIncludeTokens);
-            await ProcessInclude(result, query.IncludeTokens);
-            await ProcessExclude(result, query.ExcludeTokens);
+            // await ProcessMustInclude(result, query.MustIncludeTokens);
+            // await ProcessInclude(result, query.IncludeTokens);
+            // await ProcessExclude(result, query.ExcludeTokens);
+            result = await SearchElastic(query);
             return result;
         }
 
@@ -66,6 +67,30 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
                         .Field(d => d.Content)
                         .Query(word)
             )));
+            await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponseAndLogConsole(response);
+            return (await response).Documents.ToHashSet<Document>();
+        }
+
+        private async Task<HashSet<Document>> SearchElastic(SearchQuery searchQuery)
+        {
+            var mustIncludeQueryContainerList = new List<QueryContainer>();
+            foreach (var word in searchQuery.MustIncludeTokens)
+            {
+                var matchQuery = new MatchQuery();
+                matchQuery.Field = "content";
+                matchQuery.Query = word;
+                mustIncludeQueryContainerList.Add(matchQuery);
+            }
+            var query = new BoolQuery
+            {
+                Must = mustIncludeQueryContainerList
+            };
+
+            var response = client.SearchAsync<Document>(s => s
+                .Index(indexName)
+                .Query(q => q
+                    .Bool(b => query)
+            ));
             await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponseAndLogConsole(response);
             return (await response).Documents.ToHashSet<Document>();
         }
