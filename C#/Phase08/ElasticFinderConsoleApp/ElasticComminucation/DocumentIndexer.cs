@@ -7,7 +7,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
     public class DocumentIndexer
     {
         public string IndexName { get; set; }
-        private IElasticClient Client = ElasticClientFactory.Client;
+        private IElasticClient Client = ElasticClientFactory.GetElasticClient();
 
         public DocumentIndexer(string indexName)
         {

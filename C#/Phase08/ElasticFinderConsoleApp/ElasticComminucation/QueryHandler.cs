@@ -13,7 +13,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
 
         public QueryHandler(string indexName)
         {
-            this.client = ElasticClientFactory.Client;
+            this.client = ElasticClientFactory.GetElasticClient();
             this.indexName = indexName;
         }
 

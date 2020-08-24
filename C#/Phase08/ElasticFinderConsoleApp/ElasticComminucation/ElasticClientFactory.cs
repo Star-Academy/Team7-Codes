@@ -5,27 +5,19 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
 {
     internal static class ElasticClientFactory
     {
-        public static IElasticClient Client
-        {
-            get
-            {
-                Client ??= InitialClient();
-                return Client;
-            }
-            set
-            {
-                Client = value;
-            }
-        }
+        private static IElasticClient client = CreateInitialClient();
 
-
-        private static IElasticClient InitialClient()
+        private static IElasticClient CreateInitialClient()
         {
             var uri = new Uri("http://localhost:9200");
             var connectionSettings = new ConnectionSettings(uri);
             return new ElasticClient(connectionSettings);
         }
 
-
+        public static IElasticClient GetElasticClient() 
+        {
+            return client;
+        }
     }
 }
+
