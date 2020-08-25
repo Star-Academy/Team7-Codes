@@ -1,7 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
-using ElasticFinderConsoleApp.ElasticCumminucation;
-using ElasticFinderConsoleApp.Model;
+using InvertedIndexEngine.ElasticCumminucation;
+using InvertedIndexEngine.Model;
 
 namespace ElasticFinderConsoleApp.View
 {

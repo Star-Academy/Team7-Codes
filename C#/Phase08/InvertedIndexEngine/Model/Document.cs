@@ -1,6 +1,6 @@
 using System;
 
-namespace ElasticFinderConsoleApp.Model
+namespace InvertedIndexEngine.Model
 {
     public class Document
     {

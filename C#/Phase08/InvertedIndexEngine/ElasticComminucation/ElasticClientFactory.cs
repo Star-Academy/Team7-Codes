@@ -1,7 +1,7 @@
 using System;
 using Nest;
 
-namespace ElasticFinderConsoleApp.ElasticCumminucation
+namespace InvertedIndexEngine.ElasticCumminucation
 {
     internal static class ElasticClientFactory
     {
@@ -14,7 +14,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             return new ElasticClient(connectionSettings);
         }
 
-        public static IElasticClient GetElasticClient() 
+        public static IElasticClient GetElasticClient()
         {
             return client;
         }

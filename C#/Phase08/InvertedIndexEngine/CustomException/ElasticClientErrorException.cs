@@ -1,4 +1,4 @@
-namespace ElasticFinderConsoleApp.CustomException
+namespace InvertedIndexEngine.CustomException
 {
     public class ElasticClientErrorException : System.Exception
     {

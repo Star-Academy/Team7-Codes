@@ -1,9 +1,7 @@
 using Nest;
 using System.IO;
-using System.Linq;
-using ElasticFinderConsoleApp.Model;
 
-namespace ElasticFinderConsoleApp
+namespace InvertedIndexEngine.Model
 {
     public class FileReader
     {
@@ -17,20 +15,22 @@ namespace ElasticFinderConsoleApp
         public void ReadDirectory(BulkDescriptor bulkDescriptor, string indexName)
         {
             var files = Directory.GetFiles(Path);
-            foreach (var file in files.Where(x => File.Exists(x)))
+            foreach (var file in files)
             {
-                var document = ReadSingleDocument(file, bulkDescriptor, indexName);
+                var document = ReadSingleDocument(file, indexName);
                 bulkDescriptor.Index<Document>(x => x
                     .Index(indexName)
                     .Document(document));
             }
         }
 
-        private Document ReadSingleDocument(string file, BulkDescriptor bulkDescriptor, string indexName)
+        private Document ReadSingleDocument(string file, string indexName)
         {
-            var document = new Document();
-            document.Name = System.IO.Path.GetFileName(file);
-            document.Content = File.ReadAllText(file);
+            var document = new Document()
+            {
+                Name = System.IO.Path.GetFileName(file),
+                Content = File.ReadAllText(file)
+            };
             return document;
         }
 

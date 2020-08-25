@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Nest;
 using System.Linq;
 using System.Threading.Tasks;
-using ElasticFinderConsoleApp.Model;
+using InvertedIndexEngine.Model;
 
-namespace ElasticFinderConsoleApp.ElasticCumminucation
+namespace InvertedIndexEngine.ElasticCumminucation
 {
     public class QueryHandler
     {
@@ -24,7 +24,8 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
                 .Index(indexName)
                 .Query(q => q
                     .Bool(b => boolQuery)));
-            await ElasticResponseValidator<ISearchResponse<Document>>.ValidateResponseAndLogConsole(searchResponse);
+                    
+            await ElasticResponseValidator.ValidateResponseAndLogConsole(searchResponse);
             return (await searchResponse).Documents.ToHashSet<Document>();
         }
 
@@ -46,14 +47,12 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
 
         private List<QueryContainer> CreateWordsQueryContainerList(HashSet<string> words)
         {
-            var queryContainerList = new List<QueryContainer>();
-            foreach (var word in words)
-            {
-                var matchQuery = new MatchQuery();
-                matchQuery.Field = "content";
-                matchQuery.Query = word;
-                queryContainerList.Add(matchQuery);
-            }
+            var queryContainerList = words.Select(word => (QueryContainer)new MatchQuery
+                {
+                    Field = "content",
+                    Query = word
+                }).ToList();
+            
             return queryContainerList;
         }
 

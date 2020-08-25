@@ -1,12 +1,12 @@
 using Nest;
-using ElasticFinderConsoleApp.Model;
+using InvertedIndexEngine.Model;
 using System.Threading.Tasks;
 
-namespace ElasticFinderConsoleApp.ElasticCumminucation
+namespace InvertedIndexEngine.ElasticCumminucation
 {
     public class DocumentIndexer
     {
-        private string indexName ;
+        private string indexName;
         private IElasticClient client = ElasticClientFactory.GetElasticClient();
 
         public DocumentIndexer(string indexName)
@@ -24,17 +24,17 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
                     .Text(t => t
                         .Name(n => n.Name)))));
 
-            await ElasticResponseValidator<CreateIndexResponse>.ValidateResponseAndLogConsole(responseTask);
+            await ElasticResponseValidator.ValidateResponseAndLogConsole(responseTask);
         }
 
         public async Task DeleteIndex()
         {
             var responseExist = client.Indices.ExistsAsync(indexName);
-            await ElasticResponseValidator<ExistsResponse>.ValidateResponseAndLogConsole(responseExist);
+            await ElasticResponseValidator.ValidateResponseAndLogConsole(responseExist);
             if (responseExist.Result.Exists)
             {
                 var responseTask = client.Indices.DeleteAsync(indexName);
-                await ElasticResponseValidator<DeleteIndexResponse>.ValidateResponseAndLogConsole(responseTask);
+                await ElasticResponseValidator.ValidateResponseAndLogConsole(responseTask);
             }
         }
 
@@ -42,7 +42,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
         {
             var bulkDescriptor = AddToBulkDescriptor(fileReader);
             var responseTask = client.BulkAsync(bulkDescriptor);
-            await ElasticResponseValidator<BulkResponse>.ValidateResponseAndLogConsole(responseTask);
+            await ElasticResponseValidator.ValidateResponseAndLogConsole(responseTask);
         }
 
         private BulkDescriptor AddToBulkDescriptor(FileReader fileReader)

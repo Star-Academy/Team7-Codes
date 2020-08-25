@@ -1,12 +1,13 @@
 using Nest;
 using System;
 using System.Threading.Tasks;
+using InvertedIndexEngine.CustomException;
 
-namespace ElasticFinderConsoleApp.ElasticCumminucation
+namespace InvertedIndexEngine.ElasticCumminucation
 {
-    public class ElasticResponseValidator<T> where T : IResponse
+    public class ElasticResponseValidator
     {
-        public static async Task ValidateResponseAndLogConsole(Task<T> responseTask)
+        public static async Task ValidateResponseAndLogConsole<T>(Task<T> responseTask) where T : IResponse
         {
             try
             {
@@ -14,10 +15,10 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             }
             catch (Exception e)
             {
-                if (e is CustomException.RequestNotSentException
-                        || e is CustomException.ElasticClientErrorException
-                        || e is CustomException.ElasticServerErrorException
-                        || e is CustomException.ServerErrorException)
+                if (e is RequestNotSentException
+                        || e is ElasticClientErrorException
+                        || e is ElasticServerErrorException
+                        || e is ServerErrorException)
                 {
                     Console.WriteLine(e.Message);
                     return;
@@ -25,7 +26,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
                 throw;
             }
         }
-        public static async Task ValidateResponse(Task<T> responseTask)
+        public static async Task ValidateResponse<T>(Task<T> responseTask) where T : IResponse
         {
             IResponse response;
             try
@@ -34,7 +35,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             }
             catch
             {
-                throw new CustomException.RequestNotSentException();
+                throw new RequestNotSentException();
             }
 
             CheckServerException(response);
@@ -47,7 +48,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             var error = response.ServerError;
             if (error != null)
             {
-                throw new CustomException.ServerErrorException(error.ToString());
+                throw new ServerErrorException(error.ToString());
             }
         }
 
@@ -56,7 +57,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             Exception e = response.OriginalException;
             if (e != null)
             {
-                throw new CustomException.ElasticClientErrorException(e.Message);
+                throw new ElasticClientErrorException(e.Message);
             }
         }
 
@@ -65,7 +66,7 @@ namespace ElasticFinderConsoleApp.ElasticCumminucation
             Exception e = response.ApiCall.OriginalException;
             if (e != null)
             {
-                throw new CustomException.ElasticServerErrorException(e.Message);
+                throw new ElasticServerErrorException(e.Message);
             }
         }
     }

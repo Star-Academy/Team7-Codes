@@ -1,31 +1,22 @@
 using System.Collections.Generic;
 
-namespace ElasticFinderConsoleApp.Model
+namespace InvertedIndexEngine.Model
 {
     public class SearchQuery
     {
 
-        public HashSet<string> MustIncludeWords { get; set; }
-        public HashSet<string> IncludeWords { get; set; }
-        public HashSet<string> ExcludeWords { get; set; }
-
-        public SearchQuery()
-        {
-            Initialize();
-        }
+        public readonly HashSet<string> MustIncludeWords;
+        public readonly HashSet<string> IncludeWords;
+        public readonly HashSet<string> ExcludeWords;
 
         public SearchQuery(string query)
-        {
-            Initialize();
-            this.ParseString(query);
-        }
-
-        private void Initialize()
         {
             MustIncludeWords = new HashSet<string>();
             IncludeWords = new HashSet<string>();
             ExcludeWords = new HashSet<string>();
+            this.ParseString(query);
         }
+
 
         public void ParseString(string query)
         {
