@@ -17,6 +17,7 @@ namespace ElasticFinderConsoleApp.View
 
         public async Task Run()
         {
+            ElasticClientFactory.CreateInitialClient("http://localhost:9200");
             var path = GetPath();
             var documentIndexer = new DocumentIndexer(IndexName);
             await documentIndexer.DeleteIndex();

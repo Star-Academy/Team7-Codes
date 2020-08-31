@@ -3,15 +3,15 @@ using Nest;
 
 namespace InvertedIndexEngine.ElasticCumminucation
 {
-    internal static class ElasticClientFactory
+    public static class ElasticClientFactory
     {
-        private static IElasticClient client = CreateInitialClient();
+        private static IElasticClient client;
 
-        private static IElasticClient CreateInitialClient()
+        public static void CreateInitialClient(string address)
         {
-            var uri = new Uri("http://localhost:9200");
+            var uri = new Uri(address);
             var connectionSettings = new ConnectionSettings(uri);
-            return new ElasticClient(connectionSettings);
+            client = new ElasticClient(connectionSettings);
         }
 
         public static IElasticClient GetElasticClient()

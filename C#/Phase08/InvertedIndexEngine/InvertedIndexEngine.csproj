@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>StarAcademy.Team7.InvertedIndexEngine</PackageId>
+    <Authors>Hassan Zaker, Parsa Mohammadian</Authors>
+    <Company>Star Academy</Company>
   </PropertyGroup>
 
   <ItemGroup>
