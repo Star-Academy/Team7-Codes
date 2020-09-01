@@ -7,29 +7,25 @@ namespace SearchApi.Services
 {
     public class SearchService : ISearchService
     {
-        private string indexName = "inverted-index-engine";
         private QueryHandler queryHandler;
-        private bool flag = true;
+        private bool initialized = false;
 
-        public void Setup()
+        private void Setup()
         {
             ElasticClientFactory.CreateInitialClient("http://localhost:9200");
+            var indexName = "inverted-index-engine";
             queryHandler = new QueryHandler(indexName);
-            flag = false;
+            initialized = true;
         }
 
         public async Task<HashSet<Document>> Search(string query)
         {
-            if(flag)
+            if (!initialized)
             {
                 Setup();
             }
             var result = await queryHandler.Find(new SearchQuery(query));
             return result;
         }
-
-        
-
-
     }
 }

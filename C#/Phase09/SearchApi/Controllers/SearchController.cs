@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SearchApi.Services;
 
-
 namespace SearchApi.Controllers
 {
     [ApiController]
@@ -24,6 +23,5 @@ namespace SearchApi.Controllers
                 return NotFound();
             return Ok(result);
         }
-
     }
 }
