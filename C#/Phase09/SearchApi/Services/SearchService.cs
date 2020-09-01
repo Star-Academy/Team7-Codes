@@ -9,22 +9,19 @@ namespace SearchApi.Services
     {
         private string indexName = "inverted-index-engine";
         private QueryHandler queryHandler;
-        public async Task Setup()
+        private bool flag = true;
+        public void Setup()
         {
-            var path = "/media/hassan/new part/code-star/EnglishData";
             ElasticClientFactory.CreateInitialClient("http://localhost:9200");
-            var documentIndexer = new DocumentIndexer(indexName);
-            await documentIndexer.DeleteIndex();
-            await documentIndexer.CreateIndex();
-            await documentIndexer.IndexDocuments(new FileReader(path));
             queryHandler = new QueryHandler(indexName);
+            flag = false;
         }
 
         public async Task<HashSet<Document>> Search(string query)
         {
-            await Setup();
+            if(flag)
+                Setup();
             var result = await queryHandler.Find(new SearchQuery(query));
-            System.Console.WriteLine(result.Count);
             return result;
         }
 

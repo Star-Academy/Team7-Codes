@@ -20,13 +20,6 @@ namespace SearchApi.Controllers
             this.searchService = searchService;
         }
 
-        // [HttpGet("hi")]
-        // public string temp()
-        // {
-        //     return "hi";
-        // }
-
-
         [HttpGet("{query}")]
         public async Task<IActionResult> SearchAsync(string query)
         {

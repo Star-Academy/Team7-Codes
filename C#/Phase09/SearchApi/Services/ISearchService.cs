@@ -6,9 +6,7 @@ namespace SearchApi.Services
 {
     public interface ISearchService
     {
-        Task Setup();
-
-
+        void Setup();
         Task<HashSet<Document>> Search(string query);
     }
 }
