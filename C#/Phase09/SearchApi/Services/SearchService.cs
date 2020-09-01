@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using InvertedIndexEngine.Model;
 using InvertedIndexEngine.ElasticCumminucation;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+
 
 namespace SearchApi.Services
 {
@@ -10,11 +12,19 @@ namespace SearchApi.Services
         private QueryHandler queryHandler;
         private bool initialized = false;
 
+        private IConfiguration _config;
+
+        public SearchService(IConfiguration config)
+        {
+            _config = config;
+        }
+
         private void Setup()
         {
-            ElasticClientFactory.CreateInitialClient("http://localhost:9200");
-            var indexName = "inverted-index-engine";
-            queryHandler = new QueryHandler(indexName);
+            var elasticSearchIndexName = _config["ElasticSearchIndexName"];
+            var elasticSearchAddress = _config["ElasticSearchAddress"];
+            ElasticClientFactory.CreateInitialClient(elasticSearchAddress);
+            queryHandler = new QueryHandler(elasticSearchIndexName);
             initialized = true;
         }
 
