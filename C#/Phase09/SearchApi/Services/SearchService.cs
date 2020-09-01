@@ -4,15 +4,13 @@ using InvertedIndexEngine.ElasticCumminucation;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
-
 namespace SearchApi.Services
 {
     public class SearchService : ISearchService
     {
         private QueryHandler queryHandler;
         private bool initialized = false;
-
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public SearchService(IConfiguration config)
         {
