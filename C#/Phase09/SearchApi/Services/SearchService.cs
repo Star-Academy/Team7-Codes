@@ -10,6 +10,7 @@ namespace SearchApi.Services
         private string indexName = "inverted-index-engine";
         private QueryHandler queryHandler;
         private bool flag = true;
+
         public void Setup()
         {
             ElasticClientFactory.CreateInitialClient("http://localhost:9200");
@@ -20,7 +21,9 @@ namespace SearchApi.Services
         public async Task<HashSet<Document>> Search(string query)
         {
             if(flag)
+            {
                 Setup();
+            }
             var result = await queryHandler.Find(new SearchQuery(query));
             return result;
         }
