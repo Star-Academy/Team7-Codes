@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Orbitron;
+    src: url(./Resources/Fonts/Orbitron-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: url(./Resources/bg.jpg);
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    font-family: Orbitron, Arial, Helvetica, sans-serif;
+    font-size: xxx-large;
+}
+
+.center-aligned {
+    text-align: center;
+}
+
+.card {
+    background-color: rgba(176, 196, 222, 0.7);
+    border: 1px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 80%;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+hr {
+    margin: 50px;
+    color: rgb(224, 188, 224);
+}
+
+
+#search-wrapper {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+
+#search-field {
+    border: none;
+    flex-grow: 1;
+}
+
+#find-button {
+    background: url(./Resources/forward.svg);
+    border: none;
+}
+
+#hint {
+    color: grey;
+    font-size: medium;
+    display: inline-block;
+    text-align: left;
+}
+
+.defualt-text {
+    color: rgb(61, 59, 59);
+    font-size: large;
+}
+
+.credit {
+    text-decoration: none;
+}
+
+.credit:hover {
+    font-weight: bolder;
+}
