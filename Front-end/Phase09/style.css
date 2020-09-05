@@ -50,30 +50,40 @@ hr {
     margin: auto;
 }
 
+#search-wrapper:focus {
+    border-color: black;
+}
+
 #search-field {
     border: none;
+    outline: none;
+    font-size: 17px;
+    width: 50%;
     flex-grow: 1;
 }
 
 #find-button {
     background: url(./Resources/forward.svg);
+    background-size: cover;
+    padding-right: 18px;
     border: none;
 }
 
 #hint {
-    color: grey;
+    color: rgb(19, 18, 18);
     font-size: medium;
     display: inline-block;
     text-align: left;
 }
 
 .defualt-text {
-    color: rgb(61, 59, 59);
+    color: white;
     font-size: large;
 }
 
 .credit {
     text-decoration: none;
+    mix-blend-mode: difference;
 }
 
 .credit:hover {
