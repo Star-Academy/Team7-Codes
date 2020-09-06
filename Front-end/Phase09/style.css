@@ -10,7 +10,8 @@
 body {
     margin: 0;
     background: url(./Resources/bg.jpg);
-    background-size: cover;
+    background-size: 100%;
+    overflow-y: scroll;
 }
 
 h1 {
@@ -88,4 +89,12 @@ hr {
 
 .credit:hover {
     font-weight: bolder;
+}
+
+.single-result {
+    padding: 20px;
+}
+
+.highlighted {
+    background-color: yellow;
 }
