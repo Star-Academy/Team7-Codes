@@ -34,7 +34,9 @@ function showResult(results) {
         resultElement.innerHTML += `<details class="card single-result">
         <summary>${item.name}</summary>
         <br>
+        <xmp>
         ${content}
+        <xmp>
         </details>`;
     }
 }
@@ -54,7 +56,7 @@ function highlightWords(content) {
     let newContent = content;
     for (const word of includeWordsList) {
         let regex = new RegExp(word, 'ig');
-        newContent = newContent.replaceAll(regex, `<span class="highlighted">${word}</span>`);
+        newContent = newContent.replaceAll(regex, `</xmp><span class="highlighted">${word}</span><xmp>`);
     }
     return newContent;
 }
