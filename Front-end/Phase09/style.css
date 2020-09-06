@@ -84,7 +84,9 @@ hr {
 
 .credit {
     text-decoration: none;
-    mix-blend-mode: difference;
+    padding: 10px;
+    background-color: rgba(176, 196, 222, 0.7);
+    border-radius: 5px;
 }
 
 .credit:hover {

@@ -33,6 +33,7 @@ function showResult(results) {
         const content = highlightWords(item.content);
         resultElement.innerHTML += `<details class="card single-result">
         <summary>${item.name}</summary>
+        <br>
         ${content}
         </details>`;
     }
