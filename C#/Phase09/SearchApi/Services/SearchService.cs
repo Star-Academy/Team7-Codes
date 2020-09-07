@@ -11,7 +11,7 @@ namespace SearchApi.Services
     {
         private QueryHandler queryHandler;
 
-        private IConfiguration _config;
+        private readonly IConfiguration _config;
 
         public SearchService(IConfiguration config)
         {
@@ -27,10 +27,7 @@ namespace SearchApi.Services
             queryHandler = new QueryHandler(elasticSearchIndexName);
         }
 
-        public async Task<HashSet<Document>> Search(string query)
-        {
-            var result = await queryHandler.Find(new SearchQuery(query));
-            return result;
-        }
+        public async Task<HashSet<Document>> Search(string query) 
+            => await queryHandler.Find(new SearchQuery(query));
     }
 }
