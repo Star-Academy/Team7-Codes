@@ -20,4 +20,8 @@ export class SearchCardComponent implements OnInit {
       this.searched.emit(this.value);
     }
   }
+
+  public submit(){
+    this.searched.emit(this.value);
+  }
 }
