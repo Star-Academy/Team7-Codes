@@ -9,7 +9,7 @@ export class SearchService {
 
   public async getDocuments(searchkey: string): Promise<Document[]> {
     return new Promise<Document[]>((resolve) => {
-      this.http.get('https://localhost:5000/search/' + searchkey).subscribe((result: Document[]) => {
+      this.http.get('https://localhost:5001/search/' + searchkey).subscribe((result: Document[]) => {
         resolve(result);
       });
     });
