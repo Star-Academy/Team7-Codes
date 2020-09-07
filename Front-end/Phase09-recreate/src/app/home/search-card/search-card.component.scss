@@ -20,8 +20,9 @@
 }
 
 #find-button {
-   /* background: url(./Resources/forward.svg); */
+    background: url(../../../assets/forward.svg );
+    background-size: auto;
     background-size: cover;
-    padding-right: 18px;
+    padding-right: 15px;
     border: none;
 }
