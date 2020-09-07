@@ -9,6 +9,8 @@ import { TitleComponent } from './home/title/title.component';
 import { CreditComponent } from './credit/credit.component';
 import { ResultComponent } from './result/result.component';
 import { SingleResultComponent } from './result/single-result/single-result.component';
+import { SearchService } from './home/service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,9 +26,10 @@ import { SingleResultComponent } from './result/single-result/single-result.comp
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
