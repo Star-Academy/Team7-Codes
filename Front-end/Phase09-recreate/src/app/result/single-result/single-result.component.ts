@@ -10,8 +10,8 @@ export class SingleResultComponent implements OnInit {
 
   @Input()
   public document: Document;
-
-  constructor() { }
+  
+  constructor() {}
 
   ngOnInit(): void {
   }
