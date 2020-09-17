@@ -9,12 +9,13 @@ namespace SearchApi.Services
     public class SearchService : ISearchService
     {
         private QueryHandler queryHandler;
-        private bool initialized = false;
+
         private readonly IConfiguration _config;
 
         public SearchService(IConfiguration config)
         {
             _config = config;
+            Setup();
         }
 
         private void Setup()
@@ -23,17 +24,9 @@ namespace SearchApi.Services
             var elasticSearchAddress = _config["ElasticSearchAddress"];
             ElasticClientFactory.CreateInitialClient(elasticSearchAddress);
             queryHandler = new QueryHandler(elasticSearchIndexName);
-            initialized = true;
         }
 
-        public async Task<HashSet<Document>> Search(string query)
-        {
-            if (!initialized)
-            {
-                Setup();
-            }
-            var result = await queryHandler.Find(new SearchQuery(query));
-            return result;
-        }
+        public async Task<HashSet<Document>> Search(string query) 
+            => await queryHandler.Find(new SearchQuery(query));
     }
 }
