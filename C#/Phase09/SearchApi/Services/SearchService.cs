@@ -4,7 +4,6 @@ using InvertedIndexEngine.ElasticCumminucation;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
-
 namespace SearchApi.Services
 {
     public class SearchService : ISearchService

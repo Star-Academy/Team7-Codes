@@ -1,0 +1,28 @@
+#search-wrapper {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    width: 50%;
+    display: flex;
+    margin: auto;
+}
+
+#search-wrapper:focus {
+    border-color: black;
+}
+
+#search-field {
+    border: none;
+    outline: none;
+    font-size: 17px;
+    width: 50%;
+    flex-grow: 1;
+}
+
+#find-button {
+    background: url(../../../assets/forward.svg );
+    background-size: auto;
+    background-size: cover;
+    padding-right: 15px;
+    border: none;
+}
